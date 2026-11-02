@@ -1,0 +1,2541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منصة القمة في القدرات اللفظية | الأستاذ جابر القاضي</title>
+  
+  <!-- Favicon & Brand Icons -->
+  <link rel="icon" type="image/png" href="./assets/images/logo.png">
+  <link rel="apple-touch-icon" href="./assets/images/logo.png">
+  <link rel="shortcut icon" href="./favicon.ico">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sepia: {
+              DEFAULT: '#271a00',
+              900: '#271a00',
+              800: '#3e2a05'
+            },
+            parchment: {
+              DEFAULT: '#faf8f5',
+              100: '#faf8f5',
+              200: '#f4f1ea',
+              400: '#d1cfc7'
+            },
+            forest: {
+              DEFAULT: '#23291b',
+              950: '#0b0e0e',
+              900: '#121516',
+              850: '#181d15',
+              800: '#1d2319',
+              700: '#23291b'
+            },
+            tealAccent: {
+              DEFAULT: '#0f3639',
+              800: '#0f3639',
+              400: '#2dd4bf'
+            },
+            fog: '#d1cfc7',
+            moss: '#7c7464'
+          },
+          fontFamily: {
+            serif: ['"Thmanyah Serif Display"', 'Georgia', 'serif'],
+            'serif-text': ['"Thmanyah Serif Text"', 'Georgia', 'serif'],
+            sans: ['"Thmanyah Sans"', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', '"Thmanyah Sans"', 'monospace']
+          },
+          borderRadius: {
+            card: '12px',
+            pill: '40px',
+            input: '4px'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom CSS (Thmanyah Fonts & Nocturnal Tokens) -->
+  <link rel="stylesheet" href="./assets/css/app.css">
+</head>
+<body class="min-h-screen flex flex-col font-sans bg-slate-50 dark:bg-forest-900 text-slate-900 dark:text-parchment selection:bg-emerald-600 selection:text-white transition-colors duration-200">
+
+  <!-- ================= FLOATING ACTION BUTTONS ================= -->
+  <!-- Floating WhatsApp Quick Action Button Only -->
+  <a href="https://wa.me/966541378802" target="_blank" class="float-wa-btn w-14 h-14 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center text-2xl shadow-xl transition transform hover:scale-105 active:scale-95" title="تواصل مباشر مع الأستاذ جابر القاضي عبر الواتساب">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- ================= PUBLIC LAYOUT (VISITORS & INTRO ONLY) ================= -->
+  <div id="publicLayout" class="min-h-screen flex flex-col">
+    <!-- ================= NAVBAR ================= -->
+    <nav id="publicNavbar" class="sticky top-0 z-40 w-full bg-[#0b0d12]/95 backdrop-blur-md border-b border-white/10 shadow-lg transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
+        
+        <!-- Right: Brand Logo & Title -->
+        <div class="flex items-center gap-3">
+          <a href="#home" class="flex items-center gap-3 group">
+            <div class="w-11 h-11 rounded-2xl bg-white/10 p-1 border border-white/15 shadow-sm flex items-center justify-center shrink-0 backdrop-blur-sm group-hover:border-emerald-400/50 transition">
+              <img src="./assets/images/logo.png" alt="شعار منصة القمة" class="w-full h-full object-contain">
+            </div>
+            <div class="flex flex-col text-right">
+              <span class="text-lg font-black text-parchment tracking-tight leading-none group-hover:text-emerald-400 transition-colors">
+                منصة القِمّة
+              </span>
+              <span class="text-xs text-fog font-medium mt-1">أ. جابر القاضي</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Center: Top Navigation Links with Active Indicator -->
+        <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+          <a href="#home" class="nav-pill nav-link-active">الرئيسية</a>
+          <a href="#skills" class="nav-pill text-fog hover:text-parchment">مهارات القدرات</a>
+          <a href="#book" class="nav-pill text-fog hover:text-parchment">كتاب التأسيس</a>
+          <a href="#exams" class="nav-pill text-fog hover:text-parchment">الاختبارات المجمعة</a>
+          <a href="#faq" class="nav-pill text-fog hover:text-parchment">الأسئلة الشائعة</a>
+        </div>
+
+        <!-- Left: Theme Toggle & Login Action Buttons -->
+        <div class="flex items-center gap-2">
+          <!-- Theme Toggle Pill Button -->
+          <button id="navThemeToggleBtn" onclick="App.toggleTheme()" class="nav-pill flex items-center gap-2 border border-white/15 cursor-pointer bg-white/5 hover:bg-white/10 text-fog hover:text-parchment transition" title="تبديل المظهر النهاري / الليلي">
+            <i id="navThemeIcon" class="fa-solid fa-moon text-amber-400 text-xs"></i>
+            <span class="text-xs font-bold text-parchment hidden sm:inline" id="navThemeText">المظهر</span>
+          </button>
+
+          <!-- Guest Actions -->
+          <div id="navGuestActions" class="flex items-center gap-2">
+            <button onclick="App.openAuthModal()" class="py-2.5 px-5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black text-xs shadow-md shadow-emerald-500/20 hover:shadow-emerald-500/35 hover:-translate-y-0.5 transition-all flex items-center gap-2">
+              <i class="fa-solid fa-key text-xs"></i>
+              <span>دخول بكود الطالب</span>
+            </button>
+          </div>
+
+          <!-- User Actions (When logged in) -->
+          <div id="navUserActions" class="hidden flex items-center gap-2">
+            <a href="#student" class="py-2.5 px-5 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black text-xs shadow-md flex items-center gap-2">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span id="navUserBadge">لوحة الطالب</span>
+            </a>
+            <button onclick="App.logout()" class="w-10 h-10 rounded-full bg-rose-500/20 text-rose-300 hover:bg-rose-500/30 flex items-center justify-center text-sm transition" title="تسجيل الخروج">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  <!-- ================= NOTIFICATION TOAST CONTAINER ================= -->
+  <div id="toastContainer" class="fixed bottom-6 left-6 z-50 flex flex-col gap-2 max-w-sm"></div>
+
+  <!-- ================= GLOBAL LOADING SPINNER ================= -->
+  <div id="globalLoadingSpinner" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center">
+    <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-2xl flex flex-col items-center gap-4">
+      <div class="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+      <span class="text-sm font-bold text-slate-700 dark:text-slate-200">جاري المعالجة والتحميل...</span>
+    </div>
+  </div>
+
+  <!-- ================= VIEW 1: PUBLIC HOMEPAGE ================= -->
+  <main id="viewHome" class="flex-1">
+    
+    <!-- Hero Section (Cinematic Studio Spotlight) -->
+    <section class="hero-studio-dark relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          
+          <!-- Text Info (Right in RTL) -->
+          <div class="lg:col-span-7 text-center lg:text-right">
+            <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-parchment text-xs font-bold mb-6 shadow-sm backdrop-blur-md">
+              <img src="./assets/images/logo.png" alt="شعار القمة" class="w-5 h-5 object-contain rounded-full bg-white/20 p-0.5">
+              <span>المنصة الرسمية المعتمدة لاختبارات القدرات العامة 1448 / 2026</span>
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.28] tracking-tight mb-6">
+              <span class="block">طريقك المضمون نحو</span>
+              <span class="block mt-1 sm:mt-2">
+                <span class="text-emerald-400 relative inline-block whitespace-nowrap">
+                  الـ 100%
+                  <svg class="absolute -bottom-1 sm:-bottom-2 right-0 left-0 w-full h-3 overflow-visible pointer-events-none" viewBox="0 0 160 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 8C45 4 115 3 157 7" stroke="#2dd4bf" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 11C52 8 108 7 148 10" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/>
+                  </svg>
+                </span> في القدرات اللفظية
+              </span>
+            </h1>
+            
+            <p class="text-base sm:text-lg text-fog/90 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8 font-normal">
+              منظومة تدريبية متكاملة تحت إشراف <strong class="text-white font-bold">الأستاذ جابر القاضي</strong>، مبنية على أسس تحليلية واستراتيجيات الحل السريع، تضم بنك أسئلة الاختبارات المجمعة الشاملة (25 اختباراً كاملاً) ودليل التأسيس الاحترافي.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+              <button onclick="App.openAuthModal()" class="py-3.5 px-8 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black text-base shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all flex items-center gap-3">
+                <i class="fa-solid fa-key text-base"></i>
+                <span>ابدأ الآن بكود الطالب</span>
+              </button>
+              <a href="#book" class="py-3.5 px-7 rounded-xl bg-transparent hover:bg-white/10 text-parchment font-bold text-base border border-white/20 hover:border-emerald-400/60 transition-all flex items-center gap-2.5">
+                <i class="fa-solid fa-file-pdf text-rose-400 text-base"></i>
+                <span>تحميل كتاب التأسيس مجاناً</span>
+              </a>
+            </div>
+
+            <!-- Features Trust & Contact Row (Directly below buttons) -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs font-bold text-fog/80 pt-2 border-t border-white/10">
+              <a href="https://wa.me/966541378802" target="_blank" class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+                <span>تواصل مباشر: 0541378802</span>
+              </a>
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-shield-check text-teal-400"></i> 25 نموذج اختبار مجمع</span>
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-bolt text-amber-400"></i> تصحيح فوري وشرح منهجي</span>
+              <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-chart-line text-blue-400"></i> متابعة أداء وتقييم فوري</span>
+            </div>
+          </div>
+
+          <!-- Studio Spotlight Portrait Area (Left in RTL) -->
+          <div class="lg:col-span-5 flex justify-center relative">
+            <div class="relative w-full max-w-[380px] sm:max-w-[440px] lg:max-w-[480px] flex flex-col items-center">
+              
+              <!-- Distinctive Sacred Geometric Astrolabe Animation (Theme-Derived Heritage & Academic Precision) -->
+              <div class="geo-anim-container select-none pointer-events-none" aria-hidden="true">
+                <!-- Ambient Subtle Depth Glow -->
+                <div class="geo-layer-pulse w-full h-full">
+                  <svg viewBox="0 0 500 500" class="w-full h-full" fill="none">
+                    <circle cx="250" cy="250" r="235" fill="url(#geoAmbientGrad)" />
+                  </svg>
+                </div>
+
+                <!-- Layer 1: Outer Celestial Dial (Slow Clockwise Rotation) -->
+                <div class="geo-layer-outer w-full h-full">
+                  <svg viewBox="0 0 500 500" class="w-full h-full" fill="none">
+                    <!-- Concentric Dials -->
+                    <circle cx="250" cy="250" r="235" stroke="#2dd4bf" stroke-width="1" stroke-dasharray="3, 7" opacity="0.38" />
+                    <circle cx="250" cy="250" r="224" stroke="rgba(209, 207, 199, 0.28)" stroke-width="1.2" />
+                    <circle cx="250" cy="250" r="214" stroke="#10b981" stroke-width="0.8" stroke-dasharray="2, 6" opacity="0.35" />
+                    
+                    <!-- 24 Astrolabe Radial Ticks -->
+                    <line x1="250.0" y1="32.0" x2="250.0" y2="18.0" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="304.9" y1="39.4" x2="306.9" y2="24.4" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="357.0" y1="64.7" x2="361.0" y2="50.7" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="403.6" y1="96.4" x2="413.6" y2="86.4" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="435.3" y1="143.0" x2="449.3" y2="139.0" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="460.6" y1="195.1" x2="475.6" y2="193.1" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="468.0" y1="250.0" x2="482.0" y2="250.0" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="460.6" y1="304.9" x2="475.6" y2="306.9" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="435.3" y1="357.0" x2="449.3" y2="361.0" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="403.6" y1="403.6" x2="413.6" y2="413.6" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="357.0" y1="435.3" x2="361.0" y2="449.3" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="304.9" y1="460.6" x2="306.9" y2="475.6" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="250.0" y1="468.0" x2="250.0" y2="482.0" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="195.1" y1="460.6" x2="193.1" y2="475.6" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="143.0" y1="435.3" x2="139.0" y2="449.3" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="96.4" y1="403.6" x2="86.4" y2="413.6" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="64.7" y1="357.0" x2="50.7" y2="361.0" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="39.4" y1="304.9" x2="24.4" y2="306.9" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="32.0" y1="250.0" x2="18.0" y2="250.0" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="39.4" y1="195.1" x2="24.4" y2="193.1" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="64.7" y1="143.0" x2="50.7" y2="139.0" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="96.4" y1="96.4" x2="86.4" y2="86.4" stroke="#2dd4bf" stroke-width="1.5" />
+                    <line x1="143.0" y1="64.7" x2="139.0" y2="50.7" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+                    <line x1="195.1" y1="39.4" x2="193.1" y2="24.4" stroke="rgba(209, 207, 199, 0.35)" stroke-width="1" />
+
+                    <!-- 4 Cardinal Nodes -->
+                    <circle cx="250" cy="18" r="2.5" fill="#2dd4bf" />
+                    <circle cx="482" cy="250" r="2.5" fill="#2dd4bf" />
+                    <circle cx="250" cy="482" r="2.5" fill="#2dd4bf" />
+                    <circle cx="18" cy="250" r="2.5" fill="#2dd4bf" />
+                  </svg>
+                </div>
+
+                <!-- Layer 2: Precision Circular Orbital Arcs (Counter-Clockwise Rotation - Pure Circles, Zero Stars) -->
+                <div class="geo-layer-middle w-full h-full">
+                  <svg viewBox="0 0 500 500" class="w-full h-full" fill="none">
+                    <defs>
+                      <linearGradient id="geoRingGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.65" />
+                        <stop offset="50%" stop-color="#10b981" stop-opacity="0.3" />
+                        <stop offset="100%" stop-color="#d1cfc7" stop-opacity="0.55" />
+                      </linearGradient>
+                      <linearGradient id="geoRingGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.6" />
+                        <stop offset="50%" stop-color="#2dd4bf" stop-opacity="0.25" />
+                        <stop offset="100%" stop-color="#faf8f5" stop-opacity="0.5" />
+                      </linearGradient>
+                      <radialGradient id="geoAmbientGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#10b981" stop-opacity="0.14" />
+                        <stop offset="45%" stop-color="#0f3639" stop-opacity="0.08" />
+                        <stop offset="85%" stop-color="#0b0d12" stop-opacity="0" />
+                      </radialGradient>
+                      <filter id="geoNodeGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="3.5" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+
+                    <!-- Concentric Circular Orbital Paths (Pure Circles) -->
+                    <circle cx="250" cy="250" r="172" stroke="url(#geoRingGrad1)" stroke-width="1.5" stroke-dasharray="14, 20" />
+                    <circle cx="250" cy="250" r="158" stroke="url(#geoRingGrad2)" stroke-width="1" stroke-dasharray="6, 12" opacity="0.5" />
+                    <circle cx="250" cy="250" r="144" stroke="rgba(209, 207, 199, 0.2)" stroke-width="0.8" />
+
+                    <!-- 4 Subtle Orbital Nodes (Along the 172px Circular Orbit) -->
+                    <circle cx="371.6" cy="128.4" r="3" fill="#2dd4bf" filter="url(#geoNodeGlow)" />
+                    <circle cx="371.6" cy="128.4" r="1.5" fill="#ffffff" />
+                    <circle cx="371.6" cy="371.6" r="3" fill="#2dd4bf" filter="url(#geoNodeGlow)" />
+                    <circle cx="371.6" cy="371.6" r="1.5" fill="#ffffff" />
+                    <circle cx="128.4" cy="371.6" r="3" fill="#2dd4bf" filter="url(#geoNodeGlow)" />
+                    <circle cx="128.4" cy="371.6" r="1.5" fill="#ffffff" />
+                    <circle cx="128.4" cy="128.4" r="3" fill="#2dd4bf" filter="url(#geoNodeGlow)" />
+                    <circle cx="128.4" cy="128.4" r="1.5" fill="#ffffff" />
+                  </svg>
+                </div>
+
+                <!-- Layer 3: Inner Micro Harmonic Orbit (Clockwise Rotation - Pure Circles) -->
+                <div class="geo-layer-inner w-full h-full">
+                  <svg viewBox="0 0 500 500" class="w-full h-full" fill="none">
+                    <circle cx="250" cy="250" r="118" stroke="#10b981" stroke-width="1.2" stroke-dasharray="6, 10" opacity="0.45" />
+                    <circle cx="250" cy="250" r="102" stroke="rgba(45, 212, 191, 0.25)" stroke-width="0.8" stroke-dasharray="2, 6" />
+                    
+                    <!-- 4 Orbiting Micro Beads -->
+                    <circle cx="250" cy="132" r="2.5" fill="#faf8f5" opacity="0.9" />
+                    <circle cx="368" cy="250" r="2.5" fill="#faf8f5" opacity="0.9" />
+                    <circle cx="250" cy="368" r="2.5" fill="#faf8f5" opacity="0.9" />
+                    <circle cx="132" cy="250" r="2.5" fill="#faf8f5" opacity="0.9" />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Frameless Editorial Studio Portrait with Natural Soft Feathered Shoulders & Base -->
+              <div class="relative z-10 w-full flex flex-col items-center">
+                <img src="./assets/images/jaber_al_qadi.png" 
+                     alt="الأستاذ جابر القاضي" 
+                     class="h-[390px] sm:h-[450px] lg:h-[480px] w-auto max-w-full object-contain mx-auto studio-portrait-mask select-none pointer-events-none">
+                
+                <!-- Elegant, Clean Caption Beneath the Portrait -->
+                <div class="mt-3 text-center lg:text-right w-full">
+                  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-parchment">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>الأستاذ جابر القاضي • معلم اللغة العربية وخبير القدرات اللفظية</span>
+                  </div>
+                  <p class="text-[11px] text-fog/80 mt-1.5 italic max-w-md mx-auto lg:mx-0">
+                    «هدفي ليس فقط حفظ الإجابات، بل تمكين الطالب من فهم العلاقات اللغوية، واكتشاف حيل الاختبارات، للوصول لأعلى الدرجات بثقة واقتدار.»
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Counter Bar -->
+    <section class="py-8 bg-[#0e1217] border-y border-white/10 text-parchment">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-emerald-400 mb-1">25</div>
+            <div class="text-xs sm:text-sm font-bold text-fog">اختبار مجمع شامل</div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-teal-400 mb-1">1,639+</div>
+            <div class="text-xs sm:text-sm font-bold text-fog">سؤال محلول ومنقح</div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-amber-400 mb-1">5</div>
+            <div class="text-xs sm:text-sm font-bold text-fog">مهارات لفظية متكاملة</div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-purple-400 mb-1">100%</div>
+            <div class="text-xs sm:text-sm font-bold text-fog">توافق مع معايير قياس</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-slate-100/60 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 inline-block">
+            الأقسام المنهجية
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-4">
+            المهارات الخمس للقدرات اللفظية
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400">
+            تغطي المنصة كافة فروع اختبار القدرات العامة من خلال استراتيجيات شرح مبتكرة وتدريبات تصاعدية تبدأ من التأسيس حتى الإتقان.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Skill 1 -->
+          <div onclick="App.handleSkillClick('analogy')" class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-arrows-split-up-and-left"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">التناظر اللفظي</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                اكتشاف العلاقة المنطقية بين زوج المفردات (سببية، مكانية، ترادف، تضاد، جزء من كل) وتطبيقها بدقة على الخيارات.
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); App.handleSkillClick('analogy')" class="text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 hover:gap-2.5 transition group pt-3 border-t border-slate-100 dark:border-slate-700/60">
+              <span>6 اختبارات تدريبية (20 سؤالاً بالتمام)</span> <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i>
+            </button>
+          </div>
+
+          <!-- Skill 2 -->
+          <div onclick="App.handleSkillClick('completion')" class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-300 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-pen-to-square"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">إكمال الجمل</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                فهم السياق الكلي للجمل واختيار الكلمات الأنسب لملء الفراغات من خلال تحديد مفاتيح الجمل وروابط الاستدراك.
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); App.handleSkillClick('completion')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1.5 hover:gap-2.5 transition group pt-3 border-t border-slate-100 dark:border-slate-700/60">
+              <span>6 اختبارات تدريبية (20 سؤالاً بالتمام)</span> <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i>
+            </button>
+          </div>
+
+          <!-- Skill 3 -->
+          <div onclick="App.handleSkillClick('context_error')" class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">الخطأ السياقي</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                اكتشاف الكلمة التي أفسدت المعنى العام للحكمة أو الحقيقة، مع التدريب على تقنية استبدال الكلمة بضدها.
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); App.handleSkillClick('context_error')" class="text-xs font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5 hover:gap-2.5 transition group pt-3 border-t border-slate-100 dark:border-slate-700/60">
+              <span>6 اختبارات تدريبية (20 سؤالاً بالتمام)</span> <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i>
+            </button>
+          </div>
+
+          <!-- Skill 4 -->
+          <div onclick="App.handleSkillClick('comprehension')" class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-book-open-reader"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">استيعاب المقروء</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                قراءة النصوص وتحليل أفكارها الصريحة والضمنية، واستنتاج دلالات الألفاظ، وتحديد العناوين الجامعة.
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); App.handleSkillClick('comprehension')" class="text-xs font-bold text-purple-600 dark:text-purple-400 flex items-center gap-1.5 hover:gap-2.5 transition group pt-3 border-t border-slate-100 dark:border-slate-700/60">
+              <span>6 اختبارات تدريبية (20 سؤالاً بالتمام)</span> <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i>
+            </button>
+          </div>
+
+          <!-- Skill 5 -->
+          <div onclick="App.handleSkillClick('odd_word')" class="bg-white dark:bg-slate-800 rounded-3xl p-7 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 cursor-pointer flex flex-col justify-between">
+            <div>
+              <div class="w-14 h-14 rounded-2xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 flex items-center justify-center text-2xl mb-5">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+              </div>
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">المفردة الشاذة والارتباط</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">
+                تحديد الكلمة الخارجة عن الرابط الدلالي المشترك بين المفردات، واكتشاف الفروق الدقيقة في التصنيف اللغوي.
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); App.handleSkillClick('odd_word')" class="text-xs font-bold text-rose-600 dark:text-rose-400 flex items-center gap-1.5 hover:gap-2.5 transition group pt-3 border-t border-slate-100 dark:border-slate-700/60">
+              <span>6 اختبارات تدريبية (20 سؤالاً بالتمام)</span> <i class="fa-solid fa-arrow-left text-xs transition-transform group-hover:-translate-x-1"></i>
+            </button>
+          </div>
+
+          <!-- Methodology Card -->
+          <div onclick="App.openAuthModal('سجل دخولك بكود الطالب لبدء تدريب المهارات')" class="bg-gradient-to-br from-emerald-600 to-teal-700 rounded-3xl p-7 text-white flex flex-col justify-between shadow-xl cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition duration-300">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl mb-4">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2">منظومة تدريب المهارات</h3>
+              <p class="text-xs text-emerald-100 leading-relaxed mb-6">
+                6 اختبارات تدريبية منفصلة لكل مهارة • كل اختبار يحتوي على 20 سؤالاً حقيقياً بالتمام • تصحيح فوري وشرح منهجي وحفظ الدرجات في ملف إنجازاتك.
+              </p>
+            </div>
+            <button onclick="event.stopPropagation(); App.openAuthModal()" class="py-3.5 px-5 rounded-2xl bg-white text-emerald-800 font-extrabold text-xs shadow-md hover:bg-emerald-50 transition text-center flex items-center justify-center gap-2">
+              <i class="fa-solid fa-key"></i>
+              <span>ابدأ الآن بكود الطالب</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+          <section id="book" class="py-20 bg-gradient-to-b from-slate-100 to-white dark:from-slate-900 dark:to-slate-950 border-y border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-emerald-700 via-emerald-800 to-teal-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl relative overflow-hidden">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            
+            <div class="lg:col-span-8">
+              <span class="text-xs font-extrabold bg-white/20 text-white px-3.5 py-1.5 rounded-full mb-4 inline-block">
+                هدية الأستاذ جابر القاضي لجميع الطلاب
+              </span>
+              <h2 class="text-3xl sm:text-4xl font-black mb-4">
+                كتاب تأسيس القدرات اللفظية (إصدار 2026 المنقح)
+              </h2>
+              <p class="text-sm sm:text-base text-emerald-100 leading-relaxed mb-6">
+                دليل تعليمي شامل من 86 صفحة يتضمن التعريف باختبار القدرات، شرح أشهر العلاقات المتكررة، استراتيجيات حل الخطأ السياقي وإكمال الجمل والمفردة الشاذة، مع نصوص استيعاب المقروء ونماذج اختبارات تجريبية.
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-xs font-bold text-emerald-100">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> ملحق أهم الأصوات وبيوت الحيوانات</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> الدول وعواصمها وموانئها</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> تجميعات منقحة ومحلولة بالكامل</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> نسخة PDF عالية الدقة جاهزة للطباعة</span>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-4">
+                <a href="./downloads/تأسيس_القدرات_اللفظية_2026_أ_جابر_القاضي.pdf" download class="py-4 px-8 rounded-2xl bg-white hover:bg-emerald-50 text-emerald-900 font-black text-sm shadow-xl transition flex items-center gap-3">
+                  <i class="fa-solid fa-download text-lg text-emerald-600"></i>
+                  <span>تحميل الكتاب كاملاً مجاناً (PDF)</span>
+                </a>
+                <span class="text-xs text-emerald-200 font-mono">نسخة كاملة منقحة • 86 صفحة • PDF عالي الجودة</span>
+              </div>
+            </div>
+
+            <!-- Book Cover Preview Mockup -->
+            <div class="lg:col-span-4 flex justify-center">
+              <div class="w-64 bg-white text-slate-800 rounded-3xl p-6 shadow-2xl border-4 border-white/20 transform rotate-2 hover:rotate-0 transition duration-300 text-center">
+                <div class="w-14 h-14 mx-auto mb-2 bg-slate-50 rounded-2xl p-1 shadow-sm border border-slate-100 flex items-center justify-center">
+                  <img src="./assets/images/logo.png" alt="شعار القمة" class="w-full h-full object-contain">
+                </div>
+                <div class="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-1">القسم اللفظي • القدرات العامة</div>
+                <h4 class="text-2xl font-black text-slate-900 mb-1">تأسيس القدرات</h4>
+                <div class="text-xl font-bold text-amber-600 mb-2">اللفظية</div>
+                <div class="text-[11px] text-slate-500 mb-3">إصدار 2026 • نسخة تعليمية منقحة</div>
+                <div class="w-20 h-1 bg-amber-500 mx-auto mb-3 rounded-full"></div>
+                <div class="text-xs font-bold text-slate-700">الأستاذ / جابر القاضي</div>
+                <div class="text-[10px] text-slate-400 mt-2">هاتف: 0541378802</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+          <section id="exams" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-extrabold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 inline-block">
+            السلسلة الكاملة
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-parchment mb-4">
+            الاختبارات المجمعة الشاملة (25 اختباراً)
+          </h2>
+          <p class="text-sm sm:text-base text-slate-600 dark:text-fog">
+            موزعة على 5 مستويات تصاعدية (5 اختبارات لكل مستوى = 25 اختباراً شاملاً) بمعدل 65 سؤالاً في كل اختبار.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
+          
+          <!-- Level 1 -->
+          <div class="bg-white dark:bg-forest-800/90 rounded-3xl p-5 border border-slate-200 dark:border-white/10 shadow-sm text-center flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 mx-auto mb-3 flex items-center justify-center font-black text-lg">1</div>
+              <h4 class="text-base font-bold text-slate-900 dark:text-parchment mb-1">المستوى الأول</h4>
+              <p class="text-xs font-semibold text-blue-600 dark:text-blue-400 mb-2">التأسيس والتثبيت</p>
+              <p class="text-xs text-slate-500 dark:text-fog mb-4 leading-relaxed">الاختبارات من 1 إلى 5<br>(5 اختبارات شاملة)</p>
+            </div>
+            <span class="text-[11px] font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-full">وسام القمة التأسيسي</span>
+          </div>
+
+          <!-- Level 2 -->
+          <div class="bg-white dark:bg-forest-800/90 rounded-3xl p-5 border border-slate-200 dark:border-white/10 shadow-sm text-center flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-teal-100 dark:bg-teal-950/60 text-teal-600 dark:text-teal-400 mx-auto mb-3 flex items-center justify-center font-black text-lg">2</div>
+              <h4 class="text-base font-bold text-slate-900 dark:text-parchment mb-1">المستوى الثاني</h4>
+              <p class="text-xs font-semibold text-teal-600 dark:text-teal-400 mb-2">التوسع والتطبيق</p>
+              <p class="text-xs text-slate-500 dark:text-fog mb-4 leading-relaxed">الاختبارات من 6 إلى 10<br>(5 اختبارات شاملة)</p>
+            </div>
+            <span class="text-[11px] font-bold text-teal-600 dark:text-teal-400 bg-teal-50 dark:bg-teal-950/60 px-2.5 py-1 rounded-full">وسام القمة الفضي</span>
+          </div>
+
+          <!-- Level 3 -->
+          <div class="bg-white dark:bg-forest-800/90 rounded-3xl p-5 border border-slate-200 dark:border-white/10 shadow-sm text-center flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 mx-auto mb-3 flex items-center justify-center font-black text-lg">3</div>
+              <h4 class="text-base font-bold text-slate-900 dark:text-parchment mb-1">المستوى الثالث</h4>
+              <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-2">التحدي والمنافسة</p>
+              <p class="text-xs text-slate-500 dark:text-fog mb-4 leading-relaxed">الاختبارات من 11 إلى 15<br>(5 اختبارات شاملة)</p>
+            </div>
+            <span class="text-[11px] font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/60 px-2.5 py-1 rounded-full">وسام القمة الذهبي</span>
+          </div>
+
+          <!-- Level 4 -->
+          <div class="bg-white dark:bg-forest-800/90 rounded-3xl p-5 border border-slate-200 dark:border-white/10 shadow-sm text-center flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 mx-auto mb-3 flex items-center justify-center font-black text-lg">4</div>
+              <h4 class="text-base font-bold text-slate-900 dark:text-parchment mb-1">المستوى الرابع</h4>
+              <p class="text-xs font-semibold text-purple-600 dark:text-purple-400 mb-2">المحاكاة المتقدمة</p>
+              <p class="text-xs text-slate-500 dark:text-fog mb-4 leading-relaxed">الاختبارات من 16 إلى 20<br>(5 اختبارات شاملة)</p>
+            </div>
+            <span class="text-[11px] font-bold text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950/60 px-2.5 py-1 rounded-full">وسام القمة الماسي</span>
+          </div>
+
+          <!-- Level 5 -->
+          <div class="bg-white dark:bg-forest-800/90 rounded-3xl p-5 border border-slate-200 dark:border-white/10 shadow-sm text-center flex flex-col justify-between hover:shadow-md transition">
+            <div>
+              <div class="w-11 h-11 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 mx-auto mb-3 flex items-center justify-center font-black text-lg">5</div>
+              <h4 class="text-base font-bold text-slate-900 dark:text-parchment mb-1">المستوى الخامس</h4>
+              <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">الماراثون والاحتراف</p>
+              <p class="text-xs text-slate-500 dark:text-fog mb-4 leading-relaxed">الاختبارات من 21 إلى 25<br>(5 اختبارات شاملة)</p>
+            </div>
+            <span class="text-[11px] font-bold text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-950/60 px-2.5 py-1 rounded-full">وسام القمة المطلقة</span>
+          </div>
+
+        </div>
+
+        <!-- Call to Action Banner (Protected Content Access Notice) -->
+        <div class="max-w-3xl mx-auto bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 rounded-3xl p-8 text-white shadow-xl text-center relative overflow-hidden">
+          <div class="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center text-3xl mx-auto mb-4">
+            <i class="fa-solid fa-key"></i>
+          </div>
+          <h3 class="text-2xl font-black mb-2">منظومة الاختبارات المجمعة وتدريب المهارات</h3>
+          <p class="text-sm text-emerald-100 max-w-xl mx-auto leading-relaxed mb-6">
+            منظومة متقدمة ومحمية تضم 25 اختباراً مجمعاً شاملاً و30 اختباراً تدريبياً للمهارات (20 سؤالاً لكل اختبار). أدخل كود الطالب المخصص لك لبدء التدريب وحفظ درجاتك ومتابعة تقدمك المستمر.
+          </p>
+          <button onclick="App.openAuthModal('أدخل كود الطالب لبدء الاختبارات المجمعة')" class="py-3.5 px-8 rounded-2xl bg-white text-emerald-900 font-extrabold text-sm hover:bg-emerald-50 transition shadow-lg inline-flex items-center gap-2">
+            <i class="fa-solid fa-right-to-bracket text-emerald-600"></i>
+            <span>دخول بكود الطالب الآن</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+          <section id="faq" class="py-20">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <span class="text-xs font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 inline-block">
+            إجابات لاستفساراتك
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white mb-3">الأسئلة الشائعة</h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">كل ما تحتاج معرفته عن طريقة عمل المنصة وكيفية الاستفادة القصوى منها.</p>
+        </div>
+
+        <div class="space-y-4">
+          
+          <div class="pplx-card overflow-hidden shadow-sm">
+            <button onclick="App.toggleFAQ(1)" class="w-full p-5 text-right font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/80 transition">
+              <span>ما الفرق بين «وضع التدريب» و«وضع الاختبار الموقوت»؟</span>
+              <i id="faqIcon_1" class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+            </button>
+            <div id="faqAnswer_1" class="hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700/60 pt-3">
+              في «وضع التدريب» تظهر لك الإجابة الصحيحة وشرح القاعدة فور نقرك على زر تأكيد الإجابة لمساعدتك على التعلم السريع. أما في «وضع الاختبار الموقوت» فتكون في بيئة محاكاة حقيقية لقياس؛ حيث يعمل مؤقت العد التنازلي ولا تكشف الإجابات الصحيحة إلا بعد التسليم النهائي لتقييم مستواك الفعلي.
+            </div>
+          </div>
+
+          <div class="pplx-card overflow-hidden shadow-sm">
+            <button onclick="App.toggleFAQ(3)" class="w-full p-5 text-right font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/80 transition">
+              <span>كيف تعمل الاختبارات المجمعة والـ 25 نموذجاً؟</span>
+              <i id="faqIcon_3" class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+            </button>
+            <div id="faqAnswer_3" class="hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700/60 pt-3">
+              تضم المنصة 25 اختباراً شاملاً مقسمة على 5 مستويات تصاعدية تحاكي اختبار قياس المحوسب الحقيقي بدقة في عدد الأسئلة والوقت ونمط الأسئلة وتدرج الصعوبة.
+            </div>
+          </div>
+
+          <div class="pplx-card overflow-hidden shadow-sm">
+            <button onclick="App.toggleFAQ(4)" class="w-full p-5 text-right font-bold text-sm text-slate-900 dark:text-white flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800/80 transition">
+              <span>ما هي اختبارات المهارات الـ 30؟</span>
+              <i id="faqIcon_4" class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
+            </button>
+            <div id="faqAnswer_4" class="hidden px-5 pb-5 text-xs text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-100 dark:border-slate-700/60 pt-3">
+              اختبارات نوعية مخصصة لكل مهارة من مهارات اللفظي والكمي (التناظر، إكمال الجمل، الخطأ السياقي، استيعاب المقروء، والحساب والجبر والهندسة والإحصاء) لتمكين الطالب من تثبيت الأساسيات.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+  <!-- ================= PUBLIC FOOTER ================= -->
+  <footer id="publicFooter" class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-12 text-center text-xs text-slate-500 dark:text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white p-1 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center shrink-0">
+          <img src="./assets/images/logo.png" alt="شعار القمة" class="w-full h-full object-contain">
+        </div>
+        <div class="text-right">
+          <strong class="text-slate-900 dark:text-white block text-sm">منصة القمة في القدرات اللفظية</strong>
+          <span class="text-[11px] text-slate-500 dark:text-slate-400">إشراف وتدريب الأستاذ جابر القاضي</span>
+        </div>
+      </div>
+      <div>
+        هاتف وتواصل الدعم الأكاديمي والاشتراك: <a href="https://wa.me/966541378802" target="_blank" class="text-emerald-600 dark:text-emerald-400 font-bold font-mono hover:underline">0541378802</a>
+      </div>
+      <div>
+        جميع الحقوق محفوظة © 2026 • إصدار تعليمي رسمي معتمد
+      </div>
+    </div>
+  </footer>
+
+
+
+
+  </div>
+
+  <!-- ================= STUDENT LAYOUT (AUTHENTICATED STUDENT AREA ONLY) ================= -->
+  <div id="studentLayout" class="hidden min-h-screen flex flex-col bg-slate-50 dark:bg-forest-900 text-slate-900 dark:text-parchment transition-colors duration-200">
+    
+    <!-- Dedicated Student Navigation Bar -->
+        <!-- Dedicated Student Navigation Bar -->
+    <nav id="studentNavbar" class="sticky top-0 z-40 w-full bg-white/95 dark:bg-[#121516]/95 backdrop-blur-md border-b border-slate-200 dark:border-fog/15 shadow-xs transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
+        
+        <!-- Right: Brand Logo & Title -->
+        <div class="flex items-center gap-3">
+          <a href="#student" class="flex items-center gap-3 group">
+            <div class="w-11 h-11 rounded-2xl bg-white p-1 border border-slate-200 dark:border-white/20 shadow-sm flex items-center justify-center shrink-0">
+              <img src="./assets/images/logo.png" alt="شعار منصة القمة" class="w-full h-full object-contain">
+            </div>
+            <div class="flex flex-col text-right">
+              <span class="text-lg font-black text-slate-900 dark:text-parchment tracking-tight leading-none font-serif">
+                منصة القِمّة
+              </span>
+              <span class="text-xs text-emerald-600 dark:text-emerald-400 font-bold mt-1">بوابة الطالب الرسمية</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Center: Navigation Links with Dynamic Line Indicator (Matching Public Navbar) -->
+        <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 backdrop-blur-md">
+          <a href="#student" id="snav_home" class="nav-pill text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+            <i class="fa-solid fa-house ml-1 text-xs"></i> الرئيسية
+          </a>
+          <a href="#student/skills" id="snav_skills" class="nav-pill text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+            <i class="fa-solid fa-brain ml-1 text-xs text-emerald-500"></i> مهارات القدرات (30)
+          </a>
+          <a href="#student/aggregated-tests" id="snav_exams" class="nav-pill text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+            <i class="fa-solid fa-list-check ml-1 text-xs text-blue-500"></i> الاختبارات (25)
+          </a>
+          <a href="#student/achievements" id="snav_achievements" class="nav-pill text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+            <i class="fa-solid fa-trophy ml-1 text-xs text-amber-500"></i> إنجازاتي
+          </a>
+          <a href="#student/foundation-book" id="snav_book" class="nav-pill text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+            <i class="fa-solid fa-book-bookmark ml-1 text-xs text-rose-500"></i> كتاب التأسيس
+          </a>
+        </div>
+
+        <!-- Left: Theme Toggle, Profile Pill & Logout -->
+        <div class="flex items-center gap-2">
+          <!-- Admin Return Link (visible when admin visits student portal) -->
+          <a id="studentAdminReturnBtn" href="#admin" class="hidden nav-pill items-center gap-1.5 border border-amber-500/40 bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 font-bold hover:bg-amber-100 dark:hover:bg-amber-900/60 transition" title="العودة إلى لوحة تحكم الإدارة">
+            <i class="fa-solid fa-gauge-high text-amber-500 text-xs"></i>
+            <span class="text-xs hidden sm:inline">لوحة الإدارة</span>
+          </a>
+
+          <!-- Theme Toggle Pill Button -->
+          <button id="studentNavThemeToggleBtn" onclick="App.toggleTheme()" class="nav-pill flex items-center gap-2 border border-slate-200 dark:border-white/15 cursor-pointer bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition" title="تبديل المظهر النهاري / الليلي">
+            <i class="student-theme-icon fa-solid fa-moon text-slate-700 dark:text-amber-400 text-xs"></i>
+            <span class="text-xs font-bold text-slate-700 dark:text-slate-200 hidden sm:inline student-theme-text">المظهر</span>
+          </button>
+
+          <!-- Student Profile Pill -->
+          <a href="#student/profile" id="snav_profile" class="nav-pill flex items-center gap-2 border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 font-bold hover:bg-emerald-100 dark:hover:bg-emerald-950/70 transition">
+            <i class="fa-solid fa-user-graduate text-emerald-600 text-xs"></i>
+            <span class="student-name-display truncate max-w-[85px] sm:max-w-none">طالب القمة</span>
+          </a>
+
+          <!-- Logout Button -->
+          <button onclick="App.logout()" class="w-10 h-10 rounded-full bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center text-sm transition" title="تسجيل الخروج">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Horizontal Navigation Bar -->
+      <div class="lg:hidden flex items-center gap-2 px-4 py-2 border-t border-slate-200 dark:border-white/10 overflow-x-auto text-xs font-bold whitespace-nowrap bg-white/95 dark:bg-[#121516]/95 scrollbar-none">
+        <a href="#student" id="snav_m_home" class="nav-pill text-xs py-1.5 px-3 text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+          <i class="fa-solid fa-house ml-1"></i> الرئيسية
+        </a>
+        <a href="#student/skills" id="snav_m_skills" class="nav-pill text-xs py-1.5 px-3 text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+          <i class="fa-solid fa-brain ml-1 text-emerald-500"></i> المهارات (30)
+        </a>
+        <a href="#student/aggregated-tests" id="snav_m_exams" class="nav-pill text-xs py-1.5 px-3 text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+          <i class="fa-solid fa-list-check ml-1 text-blue-500"></i> الاختبارات (25)
+        </a>
+        <a href="#student/achievements" id="snav_m_achievements" class="nav-pill text-xs py-1.5 px-3 text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+          <i class="fa-solid fa-trophy ml-1 text-amber-500"></i> إنجازاتي
+        </a>
+        <a href="#student/foundation-book" id="snav_m_book" class="nav-pill text-xs py-1.5 px-3 text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+          <i class="fa-solid fa-book-bookmark ml-1 text-rose-500"></i> الكتاب
+        </a>
+        <a href="#student/profile" id="snav_m_profile" class="nav-pill text-xs py-1.5 px-3 text-slate-600 dark:text-fog hover:text-slate-900 dark:hover:text-parchment transition">
+          <i class="fa-solid fa-user-circle ml-1 text-purple-500"></i> حسابي
+        </a>
+      </div>
+    </nav>
+
+    <!-- Student Content Area -->
+    <div id="studentContentArea" class="flex-1">
+      
+      <!-- SUBVIEW 1: STUDENT DASHBOARD (#student) -->
+      <main id="viewStudentDashboard" class="student-subview flex-1 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Welcome Hero Banner: Luxury Nocturnal Parchment Card -->
+          <div class="pplx-card mb-8 relative overflow-hidden bg-gradient-to-l from-slate-100 via-white to-slate-50 dark:from-forest-800 dark:via-forest-900 dark:to-forest-850 border border-slate-200 dark:border-fog/15">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+              <div class="flex items-center gap-5 text-center md:text-right">
+                <div class="w-20 h-20 rounded-2xl bg-white p-1.5 shadow-xl border border-slate-200 dark:border-white/20 flex items-center justify-center shrink-0">
+                  <img src="./assets/images/logo.png" alt="شعار القمة" class="w-full h-full object-contain">
+                </div>
+                <div>
+                  <div class="flex items-center gap-3 justify-center md:justify-start mb-1">
+                    <h2 class="text-2xl sm:text-3xl font-black font-serif text-slate-900 dark:text-parchment student-name-display">طالب القمة</h2>
+                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 student-group-display">مجموعة التميز</span>
+                  </div>
+                  <p class="text-xs sm:text-sm text-slate-600 dark:text-fog leading-relaxed">
+                    منظومة التدريب نحو الـ 100% في القدرات اللفظية • تحت إشراف الأستاذ جابر القاضي
+                  </p>
+                  <div class="mt-2.5 flex flex-wrap items-center gap-2 justify-center md:justify-start text-xs">
+                    <span class="text-slate-500 dark:text-moss font-medium">كود الدخول الخاص بك:</span>
+                    <span class="font-mono font-bold student-code-display bg-slate-200/80 dark:bg-black/40 text-emerald-700 dark:text-emerald-400 px-3 py-1 rounded border border-slate-300 dark:border-emerald-500/20">QIMMAH-100</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Status Badges -->
+              <div class="flex flex-wrap items-center gap-3 justify-center md:justify-end">
+                <a href="#student/skills" class="btn-pill-primary py-3 px-5 text-xs">
+                  <i class="fa-solid fa-play text-xs"></i>
+                  <span>متابعة التدريب</span>
+                </a>
+                <a href="#student/aggregated-tests" class="btn-pill-ghost py-3 px-5 text-xs">
+                  <i class="fa-solid fa-list-check text-xs"></i>
+                  <span>الاختبارات (25)</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1. SMART NEXT ACTION CARD ("جاهز لخطوة اليوم؟") -->
+          <div id="studentNextStepBox" class="mb-8">
+            <!-- Rendered by StudentApp.loadNextStep() -->
+          </div>
+
+          <!-- 4. QUICK JUMP CARDS (Direct Access to Sections) -->
+          <div class="mb-12">
+            <h3 class="text-xl font-black font-serif text-slate-900 dark:text-parchment mb-6 flex items-center gap-2">
+              <i class="fa-solid fa-compass text-emerald-600 dark:text-emerald-400"></i>
+              <span>بوابات التعلم والتدريب المباشر</span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              <!-- Card 1: Skills Training -->
+              <a href="#student/skills" class="pplx-card group flex flex-col justify-between hover:border-emerald-500/40 transition">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-brain"></i>
+                  </div>
+                  <h4 class="text-lg font-black font-serif text-slate-900 dark:text-parchment mb-2">مهارات القدرات اللفظية</h4>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    5 مهارات متخصصة، 30 اختباراً تدريبياً مستقلاً (20 سؤالاً بالتمام لكل اختبار) مع تصحيح فوري وشرح منهجي.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 dark:border-fog/15 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                  <span>دخول التدريب (30 اختباراً)</span>
+                  <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i>
+                </div>
+              </a>
+
+              <!-- Card 2: Aggregated Exams -->
+              <a href="#student/aggregated-tests" class="pplx-card group flex flex-col justify-between hover:border-blue-500/40 transition">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-list-check"></i>
+                  </div>
+                  <h4 class="text-lg font-black font-serif text-slate-900 dark:text-parchment mb-2">الاختبارات المجمعة (25)</h4>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    25 نموذج اختبار شامل موزع على 5 مستويات متدرجة (5 اختبارات لكل مستوى)، مع إمكانية الاختيار بين (حل بوقت) أو (حل بدون وقت).
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 dark:border-fog/15 text-xs font-bold text-blue-600 dark:text-blue-400">
+                  <span>بدء الاختبارات المجمعة</span>
+                  <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i>
+                </div>
+              </a>
+
+              <!-- Card 3: Achievements -->
+              <a href="#student/achievements" class="pplx-card group flex flex-col justify-between hover:border-amber-500/40 transition">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-trophy"></i>
+                  </div>
+                  <h4 class="text-lg font-black font-serif text-slate-900 dark:text-parchment mb-2">سجل إنجازاتي وتفوقي</h4>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    متابعة دقيقة لكل اختبار أنجزته، نسبة دقتك في كل مهارة، وتحليل مستوى إتقانك لكافة المهارات بدقة.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 dark:border-fog/15 text-xs font-bold text-amber-600 dark:text-amber-400">
+                  <span>عرض ملف الإنجاز</span>
+                  <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i>
+                </div>
+              </a>
+
+              <!-- Card 4: Foundation Book -->
+              <a href="#student/foundation-book" class="pplx-card group flex flex-col justify-between hover:border-rose-500/40 transition">
+                <div>
+                  <div class="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-900/40 text-rose-600 dark:text-rose-300 flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                  </div>
+                  <h4 class="text-lg font-black font-serif text-slate-900 dark:text-parchment mb-2">كتاب التأسيس المجاني</h4>
+                  <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                    إصدار 2026 المنقح من 86 صفحة يتضمن القواعد الذهبية واستراتيجيات الحل السريع وملحق العلاقات والأصوات.
+                  </p>
+                </div>
+                <div class="flex items-center justify-between pt-3 border-t border-slate-200 dark:border-fog/15 text-xs font-bold text-rose-600 dark:text-rose-400">
+                  <span>تحميل وقراءة الكتاب (PDF)</span>
+                  <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition"></i>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <!-- SUBVIEW 2: SKILLS TRAINING SECTION (#student/skills) -->
+      <main id="viewStudentSkills" class="student-subview hidden flex-1 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="sectionSkillsTab" class="mb-14">
+            <!-- 1. All Skills Overview Grid -->
+            <div id="skillsOverviewWrap">
+              <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                  <h3 class="text-2xl font-black font-serif text-slate-900 dark:text-parchment">مهارات القدرات اللفظية</h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">اختر المهارة لاستعراض اختباراتها التدريبية الستة (كل اختبار = 20 سؤالاً بالتمام).</p>
+                </div>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 self-start sm:self-auto">
+                  5 مهارات • 30 اختباراً تدريبياً (20 سؤالاً للاختبار)
+                </span>
+              </div>
+              <div id="skillsMasteryContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Loaded by StudentApp.loadSkillsOverview() -->
+              </div>
+            </div>
+
+            <!-- 2. Single Skill Drill-down View (Hidden by default) -->
+            <div id="skillDetailWrap" class="hidden">
+              <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4 pplx-card p-6 border border-slate-200 dark:border-fog/15">
+                <div class="flex items-center gap-4">
+                  <div id="skillDetailIcon" class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-2xl font-bold">
+                    <i class="fa-solid fa-brain"></i>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2 mb-1">
+                      <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">مهارة متخصصة</span>
+                      <span class="text-xs text-slate-400">•</span>
+                      <span class="text-xs text-slate-500 dark:text-slate-400">6 اختبارات تدريبية (20 سؤالاً لكل اختبار)</span>
+                    </div>
+                    <h3 id="skillDetailTitle" class="text-2xl font-black font-serif text-slate-900 dark:text-parchment">التناظر اللفظي</h3>
+                    <p id="skillDetailDesc" class="text-xs text-slate-500 dark:text-slate-400 mt-1">وصف المهارة هنا</p>
+                  </div>
+                </div>
+                <button onclick="StudentApp.backToSkillsList()" class="btn-pill-ghost py-2.5 px-5 text-xs flex items-center gap-2 self-start md:self-auto">
+                  <i class="fa-solid fa-arrow-right"></i>
+                  <span>العودة لقائمة المهارات</span>
+                </button>
+              </div>
+
+              <div id="skillTestsListContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Loaded dynamically by StudentApp.openSkillTests() -->
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- SUBVIEW 3: AGGREGATED EXAMS (25) (#student/aggregated-tests) -->
+      <main id="viewStudentExams" class="student-subview hidden flex-1 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="sectionFarisTab" class="mb-14">
+            <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-2xl font-black font-serif text-slate-900 dark:text-parchment">الاختبارات المجمعة الشاملة (25 اختباراً)</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">محاكاة حقيقية لاختبار القدرات المحوسب؛ يمكنك الاختيار بين (حل بوقت) أو (حل بدون وقت).</p>
+              </div>
+              <span class="text-xs font-bold px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 self-start sm:self-auto">
+                5 مستويات متدرجة • 5 اختبارات لكل مستوى
+              </span>
+            </div>
+            <div id="farisLevelsContainer">
+              <!-- Loaded by StudentApp.loadFarisExams() -->
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- SUBVIEW 4: ACHIEVEMENTS (#student/achievements) -->
+      <main id="viewStudentAchievements" class="student-subview hidden flex-1 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <section id="sectionAchievementsTab" class="mb-14">
+            <div class="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h3 class="text-2xl font-black font-serif text-slate-900 dark:text-parchment">سجل إنجازاتي وتفوقي</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">متابعة تفصيلية للاختبارات التدريبية المنجزة، درجات الاختبارات المجمعة، ومعدل دقتك العام.</p>
+              </div>
+              <button onclick="StudentApp.loadAchievements()" class="py-2 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs hover:bg-slate-200 transition flex items-center gap-2 self-start sm:self-auto">
+                <i class="fa-solid fa-arrows-rotate"></i> تحديث الإنجازات
+              </button>
+            </div>
+            
+            <div id="studentAchievementsFullContainer">
+              <!-- Loaded by StudentApp.loadAchievements() -->
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- SUBVIEW 5: FOUNDATION BOOK DEDICATED VIEW (#student/foundation-book) -->
+      <main id="viewStudentBook" class="student-subview hidden flex-1 py-10">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <!-- Hero Banner -->
+          <div class="pplx-card p-8 sm:p-12 relative overflow-hidden mb-12 border border-slate-200 dark:border-fog/15 bg-gradient-to-l from-slate-100 via-white to-slate-50 dark:from-forest-800 dark:via-forest-900 dark:to-forest-850">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+              <div class="lg:col-span-8">
+                <span class="text-xs font-extrabold bg-white/20 text-white px-3.5 py-1.5 rounded-full mb-4 inline-block">
+                  نسخة الطالب الرسمية المعتمدة
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black mb-4">
+                  كتاب تأسيس القدرات اللفظية (إصدار 2026 المنقح)
+                </h2>
+                <p class="text-sm sm:text-base text-emerald-100 leading-relaxed mb-6">
+                  دليل تعليمي وتأسيسي شامل من 86 صفحة يتضمن القواعد الذهبية واستراتيجيات الحل السريع لكافة أقسام القدرات اللفظية، برعاية وإشراف مباشر من <strong>الأستاذ جابر القاضي</strong>.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-xs font-bold text-emerald-100">
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> ملحق أهم الأصوات وبيوت الحيوانات</span>
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> الدول وعواصمها وموانئها الشهيرة</span>
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> تجميعات منقحة ومحلولة بالكامل</span>
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-300"></i> 86 صفحة جاهزة للطباعة بجودة عالية</span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4">
+                  <a href="./downloads/تأسيس_القدرات_اللفظية_2026_أ_جابر_القاضي.pdf" download class="py-4 px-8 rounded-2xl bg-white hover:bg-emerald-50 text-emerald-900 font-black text-sm shadow-xl transition flex items-center gap-3">
+                    <i class="fa-solid fa-download text-lg text-emerald-600"></i>
+                    <span>تحميل الكتاب كاملاً بصيغة PDF</span>
+                  </a>
+                  <a href="./downloads/تأسيس_القدرات_اللفظية_2026_أ_جابر_القاضي.pdf" target="_blank" class="py-4 px-6 rounded-2xl bg-emerald-800/80 hover:bg-emerald-800 border border-emerald-500/40 text-white font-bold text-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-up-right-from-square"></i>
+                    <span>فتح وقراءة في المتصفح</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="lg:col-span-4 flex justify-center">
+                <div class="w-64 bg-white text-slate-800 rounded-3xl p-6 shadow-2xl border-4 border-white/20 transform rotate-1 hover:rotate-0 transition duration-300 text-center">
+                  <div class="w-14 h-14 mx-auto mb-2 bg-slate-50 rounded-2xl p-1 shadow-sm border border-slate-100 flex items-center justify-center">
+                    <img src="./assets/images/logo.png" alt="شعار القمة" class="w-full h-full object-contain">
+                  </div>
+                  <div class="text-[10px] font-bold text-slate-600 uppercase tracking-widest mb-1">القسم اللفظي • القدرات العامة</div>
+                  <h4 class="text-2xl font-black text-slate-900 mb-1">تأسيس القدرات</h4>
+                  <div class="text-xl font-bold text-amber-600 mb-2">اللفظية</div>
+                  <div class="text-[11px] text-slate-500 mb-3">إصدار 2026 • 86 صفحة منقحة</div>
+                  <div class="w-20 h-1 bg-amber-500 mx-auto mb-3 rounded-full"></div>
+                  <div class="text-xs font-bold text-slate-700">الأستاذ / جابر القاضي</div>
+                  <div class="text-[10px] text-slate-400 mt-2">هاتف: 0541378802</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Book Chapters Guide -->
+          <div class="pplx-card p-8 border border-slate-200 dark:border-fog/15 mb-12">
+            <h3 class="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+              <i class="fa-solid fa-list-ol text-emerald-600"></i>
+              <span>أبواب ومحتويات كتاب التأسيس</span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">الباب الأول</span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2">استراتيجيات القدرات اللفظية</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">تعريف باختبار قياس، توزيع الأقسام، استراتيجيات إدارة وقت الدقيقة لكل سؤال، وطرق استبعاد المشتتات.</p>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">الباب الثاني</span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2">أسرار التناظر اللفظي</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">أشهر 24 علاقة منطقية متكررة (السببية، المكانية، التدرج، الجزء بالكل) وكيفية تحديد اتجاه العلاقة بدقة.</p>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">الباب الثالث</span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2">مفاتيح إكمال الجمل</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">روابط الجمل، أدوات الاستدراك، التناقض والتوافق، والتعامل مع الفراغ الثاني للحسم السريع.</p>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">الباب الرابع</span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2">قواعد الخطأ السياقي</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">تقنية تجربة الضد لاكتشاف الكلمة الشاذة سياقياً، ومفارقات الحكم والأمثال المتكررة في قياس.</p>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">الباب الخامس</span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2">استيعاب المقروء</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">القراءة المسحية الذكية، استنتاج القرون والعقود، دلالة الكلمات الضمنية، وعناوين الفقرات الجامعة.</p>
+              </div>
+
+              <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700">
+                <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400 block mb-1">الباب السادس والملحقات</span>
+                <h4 class="text-base font-bold text-slate-900 dark:text-white mb-2">المفردة الشاذة والمعاجم</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">معجم الأصوات، بيوت الكائنات، أسماء المجموعات، والعواصم والدول التي تتكرر سنوياً في الاختبارات.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+      <!-- SUBVIEW 6: STUDENT PROFILE ONLY (#student/profile) -->
+      <main id="viewStudentProfile" class="student-subview hidden flex-1 py-10">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div class="pplx-card p-8 border border-slate-200 dark:border-fog/15 mb-8">
+            
+            <!-- Student Header -->
+            <div class="flex flex-col sm:flex-row items-center gap-6 pb-8 border-b border-slate-100 dark:border-slate-700 text-center sm:text-right">
+              <div class="w-24 h-24 rounded-3xl bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-4xl shadow-inner font-bold">
+                <i class="fa-solid fa-user-graduate"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-3 justify-center sm:justify-start mb-2">
+                  <h2 class="text-2xl sm:text-3xl font-black font-serif text-slate-900 dark:text-parchment student-name-display">طالب القمة</h2>
+                  <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">حساب نشط ومفعّل</span>
+                </div>
+                <p class="text-xs text-slate-500 dark:text-slate-400">
+                  طالب مسجل في منصة القمة في القدرات اللفظية • <span class="student-group-display font-bold">مجموعة التميز</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Access Code Card with Copy Button -->
+            <div class="py-8 border-b border-slate-100 dark:border-slate-700">
+              <label class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">كود الطالب الخاص بك:</label>
+              <div class="flex items-center gap-3">
+                <div class="flex-1 bg-slate-50 dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 font-mono text-xl sm:text-2xl font-black text-slate-800 dark:text-white tracking-widest text-center select-all student-code-display">
+                  QIMMAH-100
+                </div>
+                <button onclick="App.copyStudentCode()" class="btn-pill-primary py-3.5 px-6 text-xs sm:text-sm flex items-center gap-2">
+                  <i class="fa-solid fa-copy"></i>
+                  <span>نسخ الكود</span>
+                </button>
+              </div>
+              <p class="text-[11px] text-slate-400 mt-2">
+                🔒 هذا الكود سري ومخصص لك لحفظ سجلات اختباراتك وتقدمك. لا تشاركه مع أي شخص آخر لضمان خصوصية تقدمك.
+              </p>
+            </div>
+
+            <!-- Academic Teacher Support Direct WhatsApp -->
+            <div class="py-8 border-b border-slate-100 dark:border-slate-700">
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white mb-2">التواصل الأكاديمي والاستفسارات:</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">في حال واجهت أي صعوبة في فهم مسألة أو رغبت في استشارة تدريبية، يمكنك مراسلة معلمك مباشرة عبر الواتساب.</p>
+              <a href="https://wa.me/966541378802" target="_blank" class="inline-flex items-center gap-2.5 py-3.5 px-6 rounded-2xl bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 font-bold text-xs hover:bg-emerald-100 transition shadow-sm">
+                <i class="fa-brands fa-whatsapp text-emerald-500 text-base"></i>
+                <span>مراسلة الأستاذ جابر القاضي عبر الواتساب: 0541378802</span>
+              </a>
+            </div>
+
+            <!-- Account Actions / Logout -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="text-xs text-slate-400">
+                هل ترغب في تسجيل الخروج من هذا الجهاز؟
+              </div>
+              <button onclick="App.logout()" class="w-full sm:w-auto py-3 px-6 rounded-2xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-900 text-rose-600 dark:text-rose-400 hover:bg-rose-100 font-bold text-xs transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <span>تسجيل الخروج من المنصة</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+
+    <!-- Dedicated Student Footer -->
+    <footer id="studentFooter" class="bg-white/95 dark:bg-[#121516]/95 border-t border-slate-200 dark:border-fog/15 py-8 text-center text-xs text-slate-500 dark:text-fog backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-7 h-7 rounded-lg bg-white p-0.5 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center shrink-0">
+            <img src="./assets/images/logo.png" alt="شعار القمة" class="w-full h-full object-contain">
+          </div>
+          <span>منطقة الطالب • منصة القمة في القدرات اللفظية • إشراف الأستاذ جابر القاضي</span>
+        </div>
+        <div class="flex items-center gap-4 font-bold">
+          <a href="#student" class="hover:text-emerald-600">الرئيسية</a>
+          <a href="#student/skills" class="hover:text-emerald-600">مهارات القدرات</a>
+          <a href="#student/aggregated-tests" class="hover:text-emerald-600">الاختبارات المجمعة</a>
+          <a href="#student/achievements" class="hover:text-emerald-600">إنجازاتي</a>
+          <a href="#student/foundation-book" class="hover:text-emerald-600">كتاب التأسيس</a>
+          <a href="#student/profile" class="hover:text-emerald-600">حسابي</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================= VIEW 3: PRACTICE RUNNER ================= -->
+  <main id="viewPracticeRunner" class="hidden flex-1 py-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <!-- Top Practice Bar -->
+      <div class="pplx-card p-4 border border-slate-200 dark:border-fog/15 flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div class="flex items-center gap-3">
+          <button onclick="StudentApp.confirmExitSkillTest()" class="btn-pill-ghost py-2 px-4 text-xs whitespace-nowrap" title="الخروج من التدريب">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>خروج</span>
+          </button>
+          <div>
+            <h3 id="practiceTitleDisplay" class="text-base font-bold text-slate-900 dark:text-white">تدريب المهارة</h3>
+            <span id="practiceProgressCounter" class="text-xs text-slate-400 font-semibold">السؤال 1 من 20</span>
+          </div>
+        </div>
+
+        <!-- Sizing & Submit -->
+        <div class="flex items-center gap-2 sm:gap-3 justify-between sm:justify-end">
+          
+          <!-- Font Size Dropdown -->
+          <div class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-700/80 border border-slate-200 dark:border-slate-600 text-xs">
+            <i class="fa-solid fa-text-height text-slate-500 dark:text-slate-300"></i>
+            <span class="font-bold text-slate-600 dark:text-slate-300">حجم الخط:</span>
+            <select onchange="App.setFontScale(this.value)" class="font-scale-select bg-transparent font-bold text-slate-800 dark:text-white outline-none cursor-pointer">
+              <option value="sm" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">صغير</option>
+              <option value="md" selected class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">عادي</option>
+              <option value="lg" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">كبير</option>
+            </select>
+          </div>
+
+          <button onclick="StudentApp.confirmSubmitSkillTest()" class="btn-pill-primary py-2 px-4 text-xs bg-rose-600 dark:bg-rose-600 text-white border-rose-600 hover:bg-rose-700 whitespace-nowrap flex items-center gap-1.5">
+            <i class="fa-solid fa-flag-checkered"></i>
+            <span class="hidden sm:inline">إنهاء وتسليم الاختبار</span>
+            <span class="sm:hidden">تسليم</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Two-column grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Right / Main Question Column (lg:col-span-8) -->
+        <div class="lg:col-span-8">
+          <div class="pplx-card p-6 sm:p-8 border border-slate-200 dark:border-fog/15 mb-6 scalable-text">
+            
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span id="practiceSkillTitle" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">تدريب المهارة</span>
+                <span class="text-xs text-slate-400 hidden sm:inline">(اختر الإجابة الصحيحة أو اشطب المستبعد)</span>
+              </div>
+              <button id="btnFlagPracticeQuestion" onclick="StudentApp.toggleFlagPracticeQuestion()" class="text-xs font-bold text-slate-500 hover:text-amber-500 transition flex items-center gap-1.5">
+                <i class="fa-regular fa-bookmark"></i> <span>تمييز للمراجعة</span>
+              </button>
+            </div>
+
+            <!-- Reading Passage if present -->
+            <div id="practicePassageBox" class="hidden p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 mb-6 text-sm leading-relaxed text-slate-700 dark:text-slate-300 max-h-56 overflow-y-auto">
+              <div class="font-bold text-xs text-purple-600 dark:text-purple-400 mb-1"><i class="fa-solid fa-book-open ml-1"></i> استيعاب المقروء:</div>
+              <p id="practicePassageText"></p>
+            </div>
+
+            <h3 id="practiceQuestionText" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-8 leading-relaxed">
+              نص السؤال...
+            </h3>
+
+            <!-- Options Container -->
+            <div id="practiceOptionsContainer" class="space-y-3 mb-8">
+              <!-- Rendered by StudentApp.renderPracticeQuestion() -->
+            </div>
+
+            <!-- Feedback Box (Hidden initially) -->
+            <div id="practiceFeedbackBox" class="hidden mb-8">
+              <div id="practiceCheerMessage" class="mb-3"></div>
+              <div class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed mb-2 font-medium">
+                <strong class="text-slate-900 dark:text-white block mb-1">الشرح والتحليل:</strong>
+                <p id="practiceExplanationText"></p>
+              </div>
+              <div class="text-xs text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-200 dark:border-slate-700 font-mono">
+                <strong>القاعدة:</strong> <span id="practiceRuleText"></span>
+              </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700 gap-2">
+              <button id="btnPrevPractice" onclick="StudentApp.prevPracticeQuestion()" class="py-2.5 px-5 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs hover:bg-slate-200 transition flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right"></i> السابق
+              </button>
+
+              <button id="btnConfirmPractice" onclick="StudentApp.confirmPracticeAnswer()" disabled class="py-2.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold text-xs shadow-md transition flex items-center gap-2">
+                <i class="fa-solid fa-circle-check"></i> تأكيد الإجابة
+              </button>
+
+              <button id="btnNextPractice" onclick="StudentApp.nextPracticeQuestion()" class="py-2.5 px-5 rounded-xl bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-900 font-bold text-xs shadow-md transition flex items-center gap-2">
+                <span>التالي</span> <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Left / Side Column (lg:col-span-4): Question Palette -->
+        <div class="lg:col-span-4 pplx-card p-6 border border-slate-200 dark:border-fog/15">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-slate-800 dark:text-white">لوحة الأسئلة</h4>
+            <div class="flex items-center gap-3 text-[10px] text-slate-400">
+              <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> مجاب</span>
+              <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> مميز</span>
+              <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span> متبقي</span>
+            </div>
+          </div>
+          
+          <div id="practiceQuestionPalette" class="grid grid-cols-5 sm:grid-cols-6 gap-2 max-h-96 overflow-y-auto p-1">
+            <!-- Rendered by StudentApp.renderPracticePalette() -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= VIEW 4: EXAM RUNNER (TIMED) ================= -->
+  <main id="viewExamRunner" class="hidden flex-1 py-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <!-- Top Exam Bar -->
+      <div class="bg-white dark:bg-slate-800 rounded-2xl p-4 border border-slate-200 dark:border-slate-700 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div class="flex items-center gap-3">
+          <button onclick="StudentApp.confirmExitExam()" class="btn-pill-ghost py-2 px-4 text-xs whitespace-nowrap" title="الخروج من الاختبار">
+            <i class="fa-solid fa-arrow-right"></i>
+            <span>خروج</span>
+          </button>
+          <div>
+            <h3 id="examTitleDisplay" class="text-base font-bold text-slate-900 dark:text-white">اختبار القمة المجمع</h3>
+            <span id="examProgressCounter" class="text-xs text-slate-400 font-semibold">السؤال 1 من 65</span>
+          </div>
+        </div>
+
+        <!-- Timer & Controls -->
+        <div class="flex items-center gap-2 sm:gap-3 justify-between sm:justify-end">
+          
+          <!-- Font Size Dropdown -->
+          <div class="hidden sm:flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-700/80 border border-slate-200 dark:border-slate-600 text-xs">
+            <i class="fa-solid fa-text-height text-slate-500 dark:text-slate-300"></i>
+            <span class="font-bold text-slate-600 dark:text-slate-300">حجم الخط:</span>
+            <select onchange="App.setFontScale(this.value)" class="font-scale-select bg-transparent font-bold text-slate-800 dark:text-white outline-none cursor-pointer">
+              <option value="sm" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">صغير</option>
+              <option value="md" selected class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">عادي</option>
+              <option value="lg" class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white">كبير</option>
+            </select>
+          </div>
+
+          <!-- Countdown Timer -->
+          <div class="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-700 font-mono text-sm sm:text-base font-extrabold text-slate-800 dark:text-slate-100 shadow-inner">
+            <i class="fa-solid fa-stopwatch text-emerald-500"></i>
+            <span id="examTimerDisplay">65:00</span>
+          </div>
+
+          <button onclick="StudentApp.confirmSubmitExam()" class="py-2.5 px-3 sm:px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-md transition whitespace-nowrap">
+            <span class="hidden sm:inline">إنهاء وتسليم الاختبار</span>
+            <span class="sm:hidden">تسليم الاختبار</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Question Column -->
+        <div class="lg:col-span-8">
+          <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-700 shadow-xl mb-6 scalable-text">
+            
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-2">
+                <span id="examSkillTag" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">أولاً: التناظر اللفظي</span>
+                <span class="text-xs text-slate-400 hidden sm:inline">(اختر الإجابة الصحيحة أو اشطب المستبعد)</span>
+              </div>
+              <button id="btnFlagQuestion" onclick="StudentApp.toggleFlagQuestion()" class="text-xs font-bold text-slate-500 hover:text-amber-500 transition flex items-center gap-1.5">
+                <i class="fa-regular fa-bookmark"></i> <span>تمييز للمراجعة</span>
+              </button>
+            </div>
+
+            <!-- Reading Passage if present -->
+            <div id="examPassageBox" class="hidden p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 mb-6 text-sm leading-relaxed text-slate-700 dark:text-slate-300 max-h-56 overflow-y-auto">
+              <div class="font-bold text-xs text-purple-600 dark:text-purple-400 mb-1"><i class="fa-solid fa-book-open ml-1"></i> استيعاب المقروء:</div>
+              <p id="examPassageText"></p>
+            </div>
+
+            <h3 id="examQuestionText" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-8 leading-relaxed">
+              نص السؤال...
+            </h3>
+
+            <!-- Options -->
+            <div id="examOptionsContainer" class="space-y-3 mb-8">
+              <!-- Rendered by StudentApp.renderExamQuestion() -->
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-700">
+              <button id="btnPrevQuestion" onclick="StudentApp.prevQuestion()" class="py-2.5 px-6 rounded-xl bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs hover:bg-slate-200 transition flex items-center gap-2">
+                <i class="fa-solid fa-chevron-right"></i> السابق
+              </button>
+              <button onclick="StudentApp.nextQuestion()" class="py-2.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition flex items-center gap-2">
+                التالي <i class="fa-solid fa-chevron-left"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Question Grid Palette Drawer (Desktop) -->
+        <div class="lg:col-span-4 bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
+          <div class="flex items-center justify-between mb-4">
+            <h4 class="text-sm font-bold text-slate-800 dark:text-white">لوحة الأسئلة</h4>
+            <div class="flex items-center gap-3 text-[10px] text-slate-400">
+              <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> مجاب</span>
+              <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span> مميز</span>
+              <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-slate-700"></span> متبقي</span>
+            </div>
+          </div>
+          
+          <div id="examQuestionPalette" class="grid grid-cols-5 sm:grid-cols-6 gap-2 max-h-96 overflow-y-auto p-1">
+            <!-- Rendered by StudentApp.renderQuestionPalette() -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= VIEW 6: EXAM RESULTS ================= -->
+  <main id="viewExamResults" class="hidden flex-1 py-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <!-- Summary Card -->
+      <div class="bg-white dark:bg-slate-800 rounded-3xl p-8 border border-slate-200 dark:border-slate-700 shadow-xl mb-10 text-center">
+        <h2 id="resExamTitle" class="text-2xl font-black text-slate-900 dark:text-white mb-4">نتيجة الاختبار</h2>
+        
+        <div class="inline-flex items-center justify-center w-36 h-36 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border-4 border-emerald-500 text-emerald-600 dark:text-emerald-300 mb-6 shadow-inner">
+          <div>
+            <div id="resScorePercent" class="text-4xl font-black tracking-tight">0%</div>
+            <div class="text-[11px] font-bold text-slate-400">الدرجة النهائية</div>
+          </div>
+        </div>
+
+        <div class="flex justify-center mb-6">
+          <span id="resStatusBadge" class="px-5 py-2.5 rounded-full font-bold text-sm"></span>
+        </div>
+
+        <div class="grid grid-cols-2 max-w-sm mx-auto gap-4 text-xs font-bold text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/60 p-4 rounded-2xl mb-8">
+          <div>الصحيحة: <strong id="resCorrectCount" class="text-slate-800 dark:text-white">0</strong></div>
+          <div>الوقت المستغرق: <strong id="resTimeTaken" class="text-slate-800 dark:text-white">0 دقيقة</strong></div>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <button onclick="App.exitRunner(StudentApp.isSkillTestMode ? 'skills' : 'exams')" class="py-3 px-6 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm transition shadow-md flex items-center gap-2">
+            <i class="fa-solid fa-rotate-left"></i>
+            <span>العودة للاختبارات</span>
+          </button>
+          <button onclick="App.exitRunner('achievements')" class="py-3 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition shadow-md flex items-center gap-2">
+            <i class="fa-solid fa-trophy"></i>
+            <span>عرض في ملف الإنجازات</span>
+          </button>
+          <button onclick="App.exitRunner('dashboard')" class="py-3 px-6 rounded-2xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-white font-bold text-sm transition flex items-center gap-2">
+            <i class="fa-solid fa-house"></i>
+            <span>الرئيسية</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question by Question Breakdown -->
+      <div class="mb-6">
+        <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2">مراجعة تفصيلية للإجابات والشروح</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400">استعرض إجاباتك وقارنها بالحل النموذجي مع شرح وتعليل الأستاذ جابر القاضي لكل سؤال.</p>
+      </div>
+
+      <div id="resBreakdownContainer" class="space-y-4">
+        <!-- Rendered by StudentApp.showExamResults() -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ================= STATE 3: ADMIN LAYOUT (AUTHENTICATED ADMIN PORTAL ONLY) ================= -->
+  <div id="adminLayout" class="hidden min-h-screen flex flex-col bg-slate-950 text-slate-100 font-sans">
+    
+    <!-- Admin Top Header Bar -->
+        <!-- Admin Top Header Bar -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 border-b border-slate-800 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative">
+        
+        <!-- Right: Admin Badge & Preview Student Link -->
+        <div class="flex items-center gap-2">
+          <span class="text-xs sm:text-sm font-black px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+            <i class="fa-solid fa-shield-halved text-amber-400"></i>
+            <span>لوحة الإدارة</span>
+          </span>
+          <a href="#student" class="py-1.5 px-3 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 font-bold text-xs flex items-center gap-1.5 transition" title="معاينة وتجربة بوابة الطالب">
+            <i class="fa-solid fa-graduation-cap text-emerald-400"></i>
+            <span class="hidden sm:inline">معاينة بوابة الطالب</span>
+          </a>
+        </div>
+
+        <!-- Center: Perfectly Centered Brand Logo (NO 'القدرات اللفظية' badge) -->
+        <div class="absolute left-1/2 -translate-x-1/2 flex items-center pointer-events-auto">
+          <a href="#admin" class="flex items-center gap-2 sm:gap-2.5 group">
+            <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-white p-1 border border-slate-700 shadow-md flex items-center justify-center shrink-0">
+              <img src="./assets/images/logo.png" alt="شعار منصة القمة" class="w-full h-full object-contain">
+            </div>
+            <div class="flex flex-col text-right">
+              <span class="text-base sm:text-lg font-black text-white tracking-tight leading-none">
+                منصة القِمّة
+              </span>
+              <span class="text-[10px] text-slate-400 hidden sm:block mt-1">مركز التحكم الشامل</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Left: Admin Top Actions -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button onclick="AdminApp.exportExcel()" class="hidden sm:inline-flex py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 border border-slate-700 font-bold text-xs transition items-center gap-1.5" title="تصدير قائمة الطلاب إلى إكسيل">
+            <i class="fa-solid fa-file-excel"></i>
+            <span>إكسيل</span>
+          </button>
+          
+          <button onclick="AdminApp.downloadBackup()" class="hidden sm:inline-flex py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 font-bold text-xs transition items-center gap-1.5" title="تنزيل نسخة احتياطية من قاعدة البيانات">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span>نسخ احتياطي</span>
+          </button>
+
+          <!-- PROMINENT ADMIN LOGOUT BUTTON -->
+          <button onclick="App.logout()" class="py-2 px-3 sm:px-4 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs sm:text-sm transition flex items-center gap-1.5 shadow-lg shadow-rose-600/30 active:scale-95" title="تسجيل الخروج والعودة للرئيسية">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>خروج</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Admin Body Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+      
+      <!-- Modern Navigation Tab Bar -->
+      <div class="bg-slate-900 rounded-2xl p-2 border border-slate-800 shadow-xl flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+        <button id="adminTabBtn_overview" onclick="AdminApp.switchTab('overview')" class="admin-nav-btn active px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-600 text-white shadow-md transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>الإحصائيات العامة</span>
+        </button>
+        <button id="adminTabBtn_students" onclick="AdminApp.switchTab('students')" class="admin-nav-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-user-gear"></i>
+          <span>إدارة الطلاب والأكواد</span>
+        </button>
+        <button id="adminTabBtn_skills" onclick="AdminApp.switchTab('skills')" class="admin-nav-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-brain"></i>
+          <span>مهارات القدرات (30 تدريباً)</span>
+        </button>
+        <button id="adminTabBtn_exams" onclick="AdminApp.switchTab('exams')" class="admin-nav-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-file-signature"></i>
+          <span>الاختبارات المجمعة (25 نموذجاً)</span>
+        </button>
+        <button id="adminTabBtn_book" onclick="AdminApp.switchTab('book')" class="admin-nav-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-book-open"></i>
+          <span>كتاب التأسيس المجاني</span>
+        </button>
+        <button id="adminTabBtn_settings" onclick="AdminApp.switchTab('settings')" class="admin-nav-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-sliders"></i>
+          <span>إعدادات المنصة والنسخ</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Overview & Metrics -->
+      <div id="adminTabPane_overview" class="space-y-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">إجمالي الطلاب المسجلين</span>
+            <div id="admTotalStudents" class="text-3xl font-black text-white">0</div>
+          </div>
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">الطلاب النشطون</span>
+            <div id="admActiveStudents" class="text-3xl font-black text-emerald-400">0</div>
+          </div>
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">الحسابات المعطلة</span>
+            <div id="admDisabledStudents" class="text-3xl font-black text-rose-400">0</div>
+          </div>
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">المحاولات المنجزة</span>
+            <div id="admTotalAttempts" class="text-3xl font-black text-blue-400">0</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">متوسط درجات الطلاب</span>
+            <div id="admAvgScore" class="text-3xl font-black text-amber-400">0%</div>
+          </div>
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">نسبة الاجتياز العامة</span>
+            <div id="admPassRate" class="text-3xl font-black text-teal-400">0%</div>
+          </div>
+          <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-sm">
+            <span class="text-xs text-slate-400 font-bold block mb-1">النشاط اليوم</span>
+            <div id="admActiveToday" class="text-3xl font-black text-indigo-400">0</div>
+          </div>
+        </div>
+
+        <!-- Quick Summary Card -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-900/80 rounded-3xl p-8 border border-slate-800 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="space-y-2 text-right">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>المنصة جاهزة ومستقرة بنسبة 100%</span>
+            </div>
+            <h3 class="text-xl font-black text-white">إدارة منصة القمة في القدرات اللفظية</h3>
+            <p class="text-xs text-slate-400 max-w-xl leading-relaxed">
+              تتيح لك لوحة التحكم إضافة الطلاب وتوليد أكواد وصول فورية، ومتابعة سجلات التدريبات والنتائج في مهارات القدرات الخمس والاختبارات المجمعة، وتصدير التقارير واستعادة النسخ الاحتياطية.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <button onclick="AdminApp.switchTab('students')" class="py-3 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs transition shadow-lg shadow-emerald-600/30 flex items-center gap-2">
+              <i class="fa-solid fa-users"></i>
+              <span>الانتقال لإدارة الطلاب</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Professional Student Management (Unified) -->
+      <div id="adminTabPane_students" class="hidden space-y-6">
+        
+        <!-- Header & Top Actions -->
+        <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-black text-white">إدارة الطلاب</h3>
+            <p class="text-xs text-slate-400 mt-0.5">قائمة موحدة لإدارة حسابات الطلاب، إنشاء وتعديل الأكواد، ومتابعة النتائج.</p>
+          </div>
+          <button onclick="AdminApp.openAddStudentModal()" class="py-3 px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-95 text-white font-extrabold text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+            <i class="fa-solid fa-user-plus text-sm"></i> إضافة طالب جديد
+          </button>
+        </div>
+
+        <!-- Filter & Search Controls Bar -->
+        <div class="bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-sm flex flex-col sm:flex-row items-center gap-3">
+          <!-- Search -->
+          <div class="relative flex-1 w-full">
+            <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 text-slate-400 text-xs"></i>
+            <input type="text" oninput="AdminApp.filterStudents(this.value)" placeholder="ابحث باسم الطالب أو كود الوصول..." class="w-full pl-4 pr-9 py-2.5 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <!-- Status Filter -->
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <label class="text-xs text-slate-400 whitespace-nowrap font-bold">الحالة:</label>
+            <select onchange="AdminApp.filterStatus(this.value)" class="py-2.5 px-3 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="all">الكل (جميع الطلاب)</option>
+              <option value="active">مفعّل فقط</option>
+              <option value="disabled">معطّل فقط</option>
+            </select>
+          </div>
+          <!-- Sort Options -->
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <label class="text-xs text-slate-400 whitespace-nowrap font-bold">الترتيب:</label>
+            <select onchange="AdminApp.sortStudents(this.value)" class="py-2.5 px-3 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="newest">الأحدث انضماماً</option>
+              <option value="name_asc">الاسم (أبجدياً)</option>
+              <option value="exams_desc">الأكثر اختبارات</option>
+              <option value="score_desc">الأعلى درجات</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Bulk Actions Floating Bar -->
+        <div id="adminBulkToolbar" class="hidden flex flex-wrap items-center justify-between gap-3 p-3.5 rounded-2xl bg-emerald-950/60 border border-emerald-800 animate-fadeIn">
+          <div class="flex items-center gap-2 text-xs font-bold text-emerald-200">
+            <i class="fa-solid fa-circle-check text-emerald-400"></i>
+            <span>تم تحديد <strong id="adminSelectedCount">0</strong> طالب</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="AdminApp.bulkSetStatus(true)" class="py-1.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">
+              تفعيل المحددين
+            </button>
+            <button onclick="AdminApp.bulkSetStatus(false)" class="py-1.5 px-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs transition">
+              تعطيل المحددين
+            </button>
+            <button onclick="AdminApp.clearSelection()" class="py-1.5 px-3 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs hover:bg-slate-700 transition">
+              إلغاء التحديد
+            </button>
+          </div>
+        </div>
+
+        <!-- Unified Students Table -->
+        <div class="bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-950 border-b border-slate-800 text-slate-400 font-bold">
+                <tr>
+                  <th class="py-3.5 px-3 text-center w-10">
+                    <input type="checkbox" id="selectAllStudentsHeader" onchange="AdminApp.toggleSelectAll(this.checked)" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer">
+                  </th>
+                  <th class="py-3.5 px-2 text-center w-8">#</th>
+                  <th class="py-3.5 px-4">اسم الطالب</th>
+                  <th class="py-3.5 px-4">كود الطالب</th>
+                  <th class="py-3.5 px-4">الحالة</th>
+                  <th class="py-3.5 px-4">الاختبارات والإنجاز</th>
+                  <th class="py-3.5 px-4 text-left">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="adminStudentsTableBody">
+                <!-- Rendered by AdminApp.renderStudentsTable() -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination Bar -->
+          <div id="adminPaginationContainer" class="border-t border-slate-800">
+            <!-- Rendered by AdminApp.renderPagination() -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tab 3: Skills Management (Full CRUD) -->
+      <div id="adminTabPane_skills" class="hidden space-y-6">
+        <!-- 3a: Skills Overview Grid -->
+        <div id="adminSkillsOverviewWrap" class="space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-black text-white">مهارات القدرات اللفظية</h3>
+              <p id="adminSkillsSummaryStats" class="text-xs text-slate-400 mt-0.5">5 مهارات رئيسية • تدريبات متخصصة وتفاعلية</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="AdminApp.exportJsonBackup()" class="py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 font-bold text-xs flex items-center gap-2 border border-slate-700 transition">
+                <i class="fa-solid fa-download"></i> حفظ وتصدير التعديلات (JSON)
+              </button>
+            </div>
+          </div>
+
+          <div id="adminSkillsGridContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Rendered dynamically by AdminApp.loadSkillsManagement() -->
+          </div>
+        </div>
+
+        <!-- 3b: Skill Training Tests Management View (Drilldown) -->
+        <div id="adminSkillDetailWrap" class="hidden space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-slate-900 border border-slate-800">
+            <div class="flex items-center gap-4">
+              <button onclick="AdminApp.backToSkillsOverview()" class="py-2 px-3.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-xs flex items-center gap-2 transition">
+                <i class="fa-solid fa-arrow-right"></i>
+                <span>العودة للأقسام</span>
+              </button>
+              <div>
+                <h3 id="adminCurrentSkillTitle" class="text-lg font-black text-white">إدارة تدريبات المهارة</h3>
+                <p id="adminCurrentSkillSubtitle" class="text-xs text-slate-400 mt-0.5">قائمة التدريبات وإعداداتها</p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <button onclick="AdminApp.openAddSkillTestModal()" class="py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center gap-2 shadow-md transition">
+                <i class="fa-solid fa-plus"></i>
+                <span>إضافة اختبار تدريبي جديد</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="adminSkillTestsCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Rendered dynamically by AdminApp.renderSkillTestsList() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Aggregated Exams (Full CRUD) -->
+      <div id="adminTabPane_exams" class="hidden space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h3 class="text-xl font-black text-white">الاختبارات المجمعة الشاملة</h3>
+            <p id="adminExamsSummaryStats" class="text-xs text-slate-400 mt-0.5">25 نموذجاً مجمعاً مقسمة على 5 مستويات متدرجة (5 نماذج متكاملة لكل مستوى)</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="AdminApp.exportBundleJs()" class="btn-pill-primary py-2.5 px-4 text-xs flex items-center gap-2" title="تصدير قاعدة البيانات كملف bundle.js للنشر المباشر">
+              <i class="fa-solid fa-file-code"></i>
+              <span>حفظ وتصدير قاعدة البيانات (bundle.js)</span>
+            </button>
+            <button onclick="AdminApp.exportJsonBackup()" class="btn-pill-ghost py-2.5 px-4 text-xs flex items-center gap-2 border border-fog/20 transition">
+              <i class="fa-solid fa-download"></i>
+              <span>نسخة احتياطية (JSON)</span>
+            </button>
+            <button onclick="AdminApp.openAddExamModal()" class="btn-pill-primary py-2.5 px-4 text-xs flex items-center gap-2 shadow-md transition">
+              <i class="fa-solid fa-plus"></i>
+              <span>إضافة اختبار مجمع جديد</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 rounded-3xl border border-slate-800 overflow-hidden shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-right text-xs">
+              <thead class="bg-slate-950 border-b border-slate-800 text-slate-400 font-bold">
+                <tr>
+                  <th class="py-3.5 px-4">النموذج</th>
+                  <th class="py-3.5 px-4">عنوان الاختبار</th>
+                  <th class="py-3.5 px-4">المستوى</th>
+                  <th class="py-3.5 px-4">الأسئلة</th>
+                  <th class="py-3.5 px-4">المدة</th>
+                  <th class="py-3.5 px-4">النجاح</th>
+                  <th class="py-3.5 px-4 text-center">إجراءات الإدارة</th>
+                </tr>
+              </thead>
+              <tbody id="adminExamsTableBody">
+                <!-- Rendered by AdminApp.loadExams() -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 5: Foundation Book Management -->
+      <div id="adminTabPane_book" class="hidden space-y-6">
+        <div class="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-sm max-w-2xl mx-auto space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-3xl font-bold">
+              <i class="fa-solid fa-file-pdf"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-black text-white">كتاب التأسيس المجاني المحدث</h3>
+              <p class="text-xs text-slate-400">ملف PDF رسمي لمعلم ومدرب القدرات الأستاذ جابر القاضي</p>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2 text-xs">
+            <div class="flex justify-between text-slate-400">
+              <span>مسار الملف على الخادم:</span>
+              <span class="font-mono text-emerald-400">/assets/pdf/كتاب_القدرات_المحدث.pdf</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>حجم الملف:</span>
+              <span class="font-mono text-white">~4.9 ميجابايت</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>الحالة:</span>
+              <span class="text-emerald-400 font-bold">متاح للتحميل والقراءة المباشرة للطلاب والزوار</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="./assets/pdf/كتاب_القدرات_المحدث.pdf" target="_blank" class="py-3 px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs transition flex items-center gap-2">
+              <i class="fa-solid fa-eye"></i>
+              <span>معاينة الكتاب الآن</span>
+            </a>
+            <a href="./assets/pdf/كتاب_القدرات_المحدث.pdf" download class="py-3 px-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-extrabold text-xs transition flex items-center gap-2">
+              <i class="fa-solid fa-download"></i>
+              <span>تنزيل نسخة على جهازك</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 6: Platform Settings & Backup -->
+      <div id="adminTabPane_settings" class="hidden space-y-6">
+        <div class="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-sm max-w-2xl mx-auto">
+          <h3 class="text-lg font-bold text-white mb-6">إعدادات المنصة وقواعد الاختبارات</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1">اسم المدرب والمشرف:</label>
+              <input type="text" id="settingInstructorName" value="الأستاذ جابر القاضي" class="w-full p-3 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1">رقم الهاتف / الواتساب الرسمي:</label>
+              <input type="text" id="settingInstructorPhone" value="0541378802" class="w-full p-3 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white font-mono">
+            </div>
+            <div>
+              <label class="text-xs font-bold text-slate-300 block mb-1">نسبة النجاح والاجتياز الافتراضية (%):</label>
+              <input type="number" id="settingPassThreshold" value="75" class="w-full p-3 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white">
+            </div>
+
+            <div class="pt-4 border-t border-slate-800">
+              <button onclick="AdminApp.savePlatformSettings()" class="py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">
+                حفظ التعديلات
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-10 pt-8 border-t border-slate-800">
+            <h4 class="text-sm font-bold text-white mb-2">استعادة قاعدة البيانات من نسخة احتياطية</h4>
+            <p class="text-xs text-slate-400 mb-4">في حال نقل المنصة أو استرجاع بيانات سابقة، ارفع ملف النسخة الاحتياطية (.json).</p>
+            <input type="file" onchange="AdminApp.handleBackupRestore(this)" accept=".json" class="text-xs text-slate-400">
+          </div>
+
+          <div class="mt-6 pt-6 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h4 class="text-xs font-bold text-white mb-0.5">إعادة ضبط المصنع للأسئلة والنماذج</h4>
+              <p class="text-[11px] text-slate-400">إلغاء أي تعديلات مخصصة واستعادة بنك الأسئلة المعتمد الأصلي كاملاً.</p>
+            </div>
+            <button onclick="AdminApp.resetDatabaseToDefault()" class="py-2.5 px-4 rounded-xl bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white font-bold text-xs transition border border-rose-500/30">
+              <i class="fa-solid fa-rotate-left ml-1"></i> استعادة الأصل
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Universal Question Manager View (for Skills & Aggregated Exams) -->
+      <div id="adminQuestionManagerWrap" class="hidden space-y-6">
+        <!-- Top Bar & Breadcrumb -->
+        <div class="flex flex-wrap items-center justify-between gap-4 p-5 rounded-3xl bg-slate-900 border border-slate-800 shadow-sm">
+          <div class="flex items-center gap-4">
+            <button onclick="AdminApp.closeQuestionManager()" class="py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold text-xs flex items-center gap-2 transition">
+              <i class="fa-solid fa-arrow-right"></i>
+              <span>العودة للاختبارات</span>
+            </button>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span id="adminQManagerTypeBadge" class="text-[11px] font-black px-2.5 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  اختبار
+                </span>
+                <span id="adminQManagerCountBadge" class="text-[11px] font-black px-2.5 py-0.5 rounded-lg bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                  0 أسئلة
+                </span>
+              </div>
+              <h3 id="adminQManagerTitle" class="text-xl font-black text-white">إدارة الأسئلة</h3>
+              <p id="adminQManagerSubtitle" class="text-xs text-slate-400 mt-0.5">عرض وتعديل وترتيب الأسئلة والخيارات والإجابات الصحيحة</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="AdminApp.openAddQuestionModal()" class="py-2.5 px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-black text-xs shadow-lg shadow-emerald-600/30 flex items-center gap-2 transition">
+              <i class="fa-solid fa-plus"></i>
+              <span>إضافة سؤال جديد</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="flex flex-wrap items-center justify-between gap-3 p-4 rounded-2xl bg-slate-900/80 border border-slate-800">
+          <div class="flex-1 min-w-[260px] relative">
+            <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3.5 text-slate-500 text-xs"></i>
+            <input 
+              type="text" 
+              id="adminQSearchInput" 
+              oninput="AdminApp.filterQuestions(this.value)" 
+              placeholder="ابحث في نص السؤال، نص القطعة، أو الخيارات..." 
+              class="w-full pr-9 pl-4 py-2.5 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500"
+            >
+          </div>
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-slate-400 whitespace-nowrap font-bold">المهارة / القسم:</label>
+            <select id="adminQCategoryFilter" onchange="AdminApp.filterQuestionsByCategory(this.value)" class="py-2.5 px-3 rounded-xl border border-slate-700 bg-slate-950 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="all">كافة المهارات (الكل)</option>
+              <option value="analogy">التناظر اللفظي</option>
+              <option value="completion">إكمال الجمل</option>
+              <option value="context">الخطأ السياقي</option>
+              <option value="reading">استيعاب المقروء</option>
+              <option value="odd">المفردة الشاذة</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Questions List Container -->
+        <div id="adminQuestionsListContainer" class="space-y-4">
+          <!-- Rendered dynamically by AdminApp.renderQuestionsList() -->
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Admin Footer -->
+    <footer class="mt-auto border-t border-slate-800/80 bg-slate-900 py-6 text-center text-xs text-slate-500">
+      منصة القمة في القدرات اللفظية • لوحة التحكم الإدارية • إشراف الأستاذ جابر القاضي © 2026
+    </footer>
+
+  </div>
+
+  <!-- ================= VIEW 8: PUBLIC VERIFICATION ================= -->
+  
+
+  <!-- ================= MODAL: CONFIRM SUBMIT SKILL TEST ================= -->
+  <div id="modalConfirmSubmitSkillTest" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp text-center">
+      <div class="w-16 h-16 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4 shadow-inner">
+        <i class="fa-solid fa-flag-checkered"></i>
+      </div>
+      <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2">تأكيد إنهاء وتسليم الاختبار</h3>
+      <p id="skillTestSubmitModalBody" class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+        هل أنت متأكد من رغبتك في إنهاء الاختبار وتسليمه الآن؟ سيتم احتساب نتيجتك بناءً على الأسئلة التي أجبت عنها.
+      </p>
+
+      <div class="space-y-3">
+        <button onclick="StudentApp.executeSubmitSkillTest()" class="w-full py-3.5 px-6 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/30 transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>موافق (إنهاء وعرض النتيجة)</span>
+        </button>
+
+        <button onclick="document.getElementById('modalConfirmSubmitSkillTest').classList.add('hidden')" class="w-full py-3 px-6 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs transition">
+          <span>إلغاء (متابعة الاختبار)</span>
+        </button>
+
+        <button onclick="document.getElementById('modalConfirmSubmitSkillTest').classList.add('hidden'); App.exitRunner('skills')" class="w-full py-2.5 px-4 text-center text-xs text-rose-500 hover:text-rose-600 font-bold transition">
+          <span>الخروج بدون حفظ إلى قائمة المهارات</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CONFIRM EXIT SKILL TEST ================= -->
+  <div id="modalConfirmExitSkillTest" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp text-center">
+      <div class="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mx-auto mb-4 shadow-inner">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </div>
+      <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2">تأكيد الخروج من التدريب</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+        هل تريد بالتأكيد الخروج من الاختبار التدريبي والعودة لقائمة المهارات؟ لن يتم حفظ إجابات هذه الجولة.
+      </p>
+
+      <div class="space-y-3">
+        <button onclick="document.getElementById('modalConfirmExitSkillTest').classList.add('hidden'); App.exitRunner('skills')" class="w-full py-3.5 px-6 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-sm shadow-lg shadow-rose-600/30 transition flex items-center justify-center gap-2">
+          <span>نعم، الخروج لقائمة المهارات</span>
+        </button>
+
+        <button onclick="document.getElementById('modalConfirmExitSkillTest').classList.add('hidden')" class="w-full py-3 px-6 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs transition">
+          <span>البقاء ومتابعة التدريب</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: CONFIRM EXIT EXAM ================= -->
+  <div id="modalConfirmExitExam" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp text-center">
+      <div class="w-16 h-16 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mx-auto mb-4 shadow-inner">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </div>
+      <h3 class="text-xl font-black text-slate-900 dark:text-white mb-2">تأكيد الخروج من الاختبار</h3>
+      <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+        هل تريد بالتأكيد الخروج من الاختبار المجمع؟ سيتم إيقاف الوقت ولن يتم حفظ تقدمك الحالي.
+      </p>
+
+      <div class="space-y-3">
+        <button onclick="document.getElementById('modalConfirmExitExam').classList.add('hidden'); App.exitRunner('exams')" class="w-full py-3.5 px-6 rounded-2xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-sm shadow-lg shadow-rose-600/30 transition flex items-center justify-center gap-2">
+          <span>نعم، الخروج لقائمة الاختبارات</span>
+        </button>
+
+        <button onclick="document.getElementById('modalConfirmExitExam').classList.add('hidden')" class="w-full py-3 px-6 rounded-2xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs transition">
+          <span>البقاء ومتابعة الاختبار</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EXAM MODE SELECT (TIMED VS UNTIMED) ================= -->
+  <div id="modalExamModeSelect" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      <button onclick="document.getElementById('modalExamModeSelect').classList.add('hidden')" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white flex items-center justify-center absolute left-4 top-4 text-sm transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-2xl bg-blue-100 dark:bg-blue-950/70 text-blue-600 dark:text-blue-400 mx-auto mb-3 flex items-center justify-center text-3xl font-bold shadow-inner">
+          <i class="fa-solid fa-stopwatch-20"></i>
+        </div>
+        <h3 id="modeModalExamTitle" class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mb-1">اختر طريقة حل الاختبار</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400">حدد النمط المفضل لك لخوض هذا النموذج المجمع (65 سؤالاً)</p>
+      </div>
+
+      <div class="space-y-4 mb-6">
+        <!-- Mode 1: Timed -->
+        <button onclick="StudentApp.confirmStartExam(true)" class="w-full p-5 text-right rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 dark:bg-emerald-950/30 hover:bg-emerald-100/60 dark:hover:bg-emerald-950/50 transition group flex items-start gap-4 shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shrink-0 mt-0.5 shadow-md shadow-emerald-600/30">
+            <i class="fa-solid fa-stopwatch"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-base font-bold text-slate-900 dark:text-white">حل بوقت (مؤقت 65 دقيقة)</strong>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">محاكاة قياس</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              محاكاة واقعية لاختبار قياس المحوسب مع مؤقت عد تنازلي حقيقي لتدريبك على إدارة الوقت وسرعة الحل.
+            </p>
+          </div>
+        </button>
+
+        <!-- Mode 2: Untimed -->
+        <button onclick="StudentApp.confirmStartExam(false)" class="w-full p-5 text-right rounded-2xl border-2 border-blue-500 bg-blue-50/50 dark:bg-blue-950/30 hover:bg-blue-100/60 dark:hover:bg-blue-950/50 transition group flex items-start gap-4 shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl shrink-0 mt-0.5 shadow-md shadow-blue-600/30">
+            <i class="fa-solid fa-infinity"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <strong class="text-base font-bold text-slate-900 dark:text-white">حل بدون وقت (تدريب حر ومريح)</strong>
+              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">تدريب مفتوح</span>
+            </div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              حل الأسئلة بهدوء وتركيز تام بدون أي ضغط زمني لترسيخ المفاهيم واستيعاب العلاقات بدقة.
+            </p>
+          </div>
+        </button>
+      </div>
+
+      <button onclick="document.getElementById('modalExamModeSelect').classList.add('hidden')" class="w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-slate-200 dark:hover:bg-slate-700 transition">
+        إلغاء
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: UNIFIED ACCESS CODE LOGIN ================= -->
+  <div id="modalAuth" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      
+      <!-- Close Button -->
+      <button onclick="App.closeAuthModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-800 dark:hover:text-white flex items-center justify-center absolute left-4 top-4 text-sm transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 rounded-2xl bg-white dark:bg-slate-800 p-2 mx-auto mb-3 flex items-center justify-center shadow-lg border border-slate-200 dark:border-slate-700">
+          <img src="./assets/images/logo.png" alt="شعار منصة القمة" class="w-full h-full object-contain">
+        </div>
+        <h3 class="text-xl font-black text-slate-900 dark:text-white">تسجيل الدخول</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">أدخل كود الدخول الخاص بك للمتابعة</p>
+      </div>
+
+      <!-- Access Code Form: Exactly one input + one button -->
+      <div class="space-y-4">
+        <!-- Error Container -->
+        <div id="studentLoginError" class="hidden p-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-xs font-bold text-rose-600 dark:text-rose-400 text-center leading-relaxed"></div>
+
+        <div>
+          <label for="loginAccessCode" class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-2">أدخل كود الدخول:</label>
+          <input 
+            type="text" 
+            id="loginAccessCode" 
+            placeholder="مثال: QIMMAH-100" 
+            onkeydown="if(event.key==='Enter') App.submitCodeLogin()" 
+            class="w-full p-4 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-base font-mono font-black text-center tracking-widest text-slate-900 dark:text-white uppercase focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 shadow-inner transition"
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+
+        <button onclick="App.submitCodeLogin()" class="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-black text-base shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 transition flex items-center justify-center gap-2">
+          <span>دخول</span>
+          <i class="fa-solid fa-arrow-left text-sm"></i>
+        </button>
+
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed text-center">
+          💡 كود الدخول يمنح لك حصرياً من قِبل <strong>الأستاذ جابر القاضي</strong> للوصول لمنظومة منصة القمة.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= MODAL 3: ADD NEW STUDENT ================= -->
+  <div id="modalAddStudent" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-black text-slate-900 dark:text-white">إضافة طالب جديد</h3>
+        <button onclick="document.getElementById('modalAddStudent').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 dark:hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">اسم الطالب الرباعي: <span class="text-rose-500">*</span></label>
+          <input type="text" id="newStudentName" placeholder="مثال: محمد بن سعد القحطاني" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <!-- Code Generation Option -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 space-y-2">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="newStudentAutoCode" checked onchange="AdminApp.toggleCustomCodeInput(this.checked)" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500">
+            <span class="text-xs font-bold text-slate-800 dark:text-slate-200">توليد كود دخول فريد تلقائياً (QIMMAH-XXX)</span>
+          </label>
+          
+          <div id="newStudentCodeContainer" class="hidden pt-2">
+            <label class="text-[11px] font-bold text-slate-500 dark:text-slate-400 block mb-1">كود مخصص:</label>
+            <input type="text" id="newStudentCode" placeholder="مثال: QIMMAH-555" class="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-mono font-bold uppercase text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+            <p class="text-[10px] text-slate-400 mt-1">يمنع النظام تكرار الأكواد ويضمن تفرد كل كود لطالب واحد فقط.</p>
+          </div>
+        </div>
+
+        <button onclick="AdminApp.saveNewStudent()" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-check"></i>
+          <span>حفظ الطالب وتفعيل الكود</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 4: EDIT STUDENT ================= -->
+  <div id="modalEditStudent" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      <input type="hidden" id="editStudentId">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-black text-slate-900 dark:text-white">تعديل بيانات الطالب</h3>
+        <button onclick="document.getElementById('modalEditStudent').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 dark:hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">اسم الطالب:</label>
+          <input type="text" id="editStudentName" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white">
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">كود الطالب:</label>
+          <input type="text" id="editStudentCode" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-mono font-bold uppercase text-slate-900 dark:text-white">
+          <p class="text-[10px] text-slate-400 mt-1">تعديل الكود يحافظ تماماً على سجل اختبارات الطالب ودرجاته.</p>
+        </div>
+
+        <button onclick="AdminApp.saveEditStudent()" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs shadow-md transition">
+          حفظ التعديلات
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL 5: DELETE STUDENT CONFIRMATION ================= -->
+  <div id="modalDeleteStudent" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-rose-200 dark:border-rose-900/60 shadow-2xl relative text-center animate-scaleUp">
+      <div class="w-14 h-14 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      
+      <h3 class="text-lg font-black text-slate-900 dark:text-white mb-2">تأكيد حذف حساب الطالب</h3>
+      <p class="text-xs font-bold text-slate-800 dark:text-slate-200 mb-3">
+        الطالب: <span id="deleteStudentNameDisplay" class="text-rose-600"></span>
+      </p>
+
+      <div class="p-3.5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900 text-[11px] text-amber-800 dark:text-amber-300 text-right leading-relaxed mb-6">
+        ⚠️ <strong>تنبيه هام:</strong> سيؤدي الحذف النهائي إلى مسح حساب الطالب وكافة سجلات اختباراته وتقدمه نهائياً من الموقع دون أي أثر. إذا كان الغرض هو منع الطالب من الدخول، ننصح بشدة باختيار <strong>«تعطيل الحساب»</strong> بدلاً من الحذف للحفاظ على سجلاته وتاريخه التعليمي.
+      </div>
+
+      <div class="space-y-2">
+        <button onclick="AdminApp.confirmDisableInsteadOfDelete()" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-extrabold text-xs transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-pause"></i>
+          <span>تعطيل الحساب فقط (موصى به)</span>
+        </button>
+        <button onclick="AdminApp.confirmPermanentDelete()" class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-trash"></i>
+          <span>نعم، حذف نهائياً لا رجعة فيه</span>
+        </button>
+        <button onclick="document.getElementById('modalDeleteStudent').classList.add('hidden')" class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs hover:bg-slate-200 transition">
+          إلغاء التراجع
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT EXAM SETTINGS ================= -->
+  <div id="modalEditExam" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative">
+      <input type="hidden" id="editExamId">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-slate-900 dark:text-white">ضبط إعدادات الاختبار</h3>
+        <button onclick="document.getElementById('modalEditExam').classList.add('hidden')" class="text-slate-400 hover:text-slate-700"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="space-y-3">
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">عنوان الاختبار:</label>
+          <input type="text" id="editExamTitle" class="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">مدة الاختبار (بالدقائق):</label>
+          <input type="number" id="editExamDuration" class="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-slate-600 dark:text-slate-300 block mb-1">نسبة النجاح المطلوبة (%):</label>
+          <input type="number" id="editExamPassPercent" class="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs">
+        </div>
+        <button onclick="AdminApp.saveExamSettings()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition">
+          حفظ الإعدادات
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: QUESTION EDITOR (ADD / EDIT) ================= -->
+  <div id="modalQuestionEditor" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative my-8 animate-scaleUp">
+      <input type="hidden" id="qEditId">
+      <div class="flex items-center justify-between mb-5 pb-3 border-b border-slate-100 dark:border-slate-800">
+        <div>
+          <h3 id="modalQuestionEditorTitle" class="text-lg font-black text-slate-900 dark:text-white">إضافة سؤال جديد</h3>
+          <p id="modalQuestionEditorSubtitle" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">أدخل نص السؤال والخيارات وحدد الإجابة الصحيحة</p>
+        </div>
+        <button onclick="document.getElementById('modalQuestionEditor').classList.add('hidden')" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 max-h-[75vh] overflow-y-auto px-1">
+        <!-- Skill / Category Selector -->
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">المهارة / القسم: <span class="text-rose-500">*</span></label>
+          <select id="qEditSkill" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+            <option value="analogy">التناظر اللفظي</option>
+            <option value="completion">إكمال الجمل</option>
+            <option value="context">الخطأ السياقي</option>
+            <option value="reading">استيعاب المقروء</option>
+            <option value="odd">المفردة الشاذة</option>
+          </select>
+        </div>
+
+        <!-- Reading Passage (Optional) -->
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">
+            نص القطعة (اختياري - خاص باستيعاب المقروء):
+          </label>
+          <textarea id="qEditPassage" rows="3" placeholder="إذا كان السؤال مبنياً على قطعة نصية، ضع نص القطعة هنا..." class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 leading-relaxed"></textarea>
+        </div>
+
+        <!-- Question Text Prompt -->
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">نص السؤال: <span class="text-rose-500">*</span></label>
+          <textarea id="qEditQuestion" rows="2" placeholder="اكتب نص السؤال هنا (مثال: رئة : تنفس أو الحكمة التي بها خطأ...)" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500 leading-relaxed"></textarea>
+        </div>
+
+        <!-- Options A, B, C, D with Radio Selector for Correct Answer -->
+        <div class="space-y-3 pt-2">
+          <label class="text-xs font-black text-slate-800 dark:text-slate-200 block">
+            الخيارات الأربعة (حدد الدائرة بجانب الإجابة الصحيحة): <span class="text-rose-500">*</span>
+          </label>
+          
+          <!-- Option A -->
+          <div class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="qEditCorrect" value="أ" checked class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+              <span class="text-xs font-black text-emerald-600 dark:text-emerald-400 w-5 text-center">أ</span>
+            </label>
+            <input type="text" id="qEditOptionA" placeholder="نص الخيار (أ)" class="flex-1 p-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <!-- Option B -->
+          <div class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="qEditCorrect" value="ب" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+              <span class="text-xs font-black text-emerald-600 dark:text-emerald-400 w-5 text-center">ب</span>
+            </label>
+            <input type="text" id="qEditOptionB" placeholder="نص الخيار (ب)" class="flex-1 p-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <!-- Option C -->
+          <div class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="qEditCorrect" value="ج" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+              <span class="text-xs font-black text-emerald-600 dark:text-emerald-400 w-5 text-center">ج</span>
+            </label>
+            <input type="text" id="qEditOptionC" placeholder="نص الخيار (ج)" class="flex-1 p-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <!-- Option D -->
+          <div class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/60">
+            <label class="flex items-center gap-1.5 cursor-pointer">
+              <input type="radio" name="qEditCorrect" value="د" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+              <span class="text-xs font-black text-emerald-600 dark:text-emerald-400 w-5 text-center">د</span>
+            </label>
+            <input type="text" id="qEditOptionD" placeholder="نص الخيار (د)" class="flex-1 p-2 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <!-- Explanation & Rule -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+          <div>
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">الشرح والتوضيح (اختياري):</label>
+            <textarea id="qEditExplanation" rows="2" placeholder="الشرح النموذجي الذي يظهر للطالب بعد الحل..." class="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"></textarea>
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">القاعدة الذهبية (اختياري):</label>
+            <textarea id="qEditRule" rows="2" placeholder="قاعدة الحل السريع للمهارة..." class="w-full p-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500"></textarea>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-2">
+          <button onclick="document.getElementById('modalQuestionEditor').classList.add('hidden')" class="py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold text-xs hover:bg-slate-200 transition">
+            إلغاء
+          </button>
+          <button onclick="AdminApp.saveQuestion()" class="py-2.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold text-xs shadow-md transition flex items-center gap-2">
+            <i class="fa-solid fa-check"></i>
+            <span>حفظ السؤال</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD NEW COMBINED EXAM ================= -->
+  <div id="modalAddExam" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white">إضافة اختبار مجمع جديد</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">إنشاء نموذج شامل جديد وتحديد مستواه وإعداداته</p>
+        </div>
+        <button onclick="document.getElementById('modalAddExam').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 dark:hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">عنوان الاختبار: <span class="text-rose-500">*</span></label>
+          <input type="text" id="newExamTitle" placeholder="مثال: الاختبار المجمع (26)" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">المستوى: <span class="text-rose-500">*</span></label>
+          <select id="newExamLevel" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+            <option value="1">المستوى الأول: التأسيس والتثبيت</option>
+            <option value="2">المستوى الثاني: التوسع والتطبيق</option>
+            <option value="3">المستوى الثالث: التحدي والمنافسة</option>
+            <option value="4">المستوى الرابع: المحاكاة المتقدمة</option>
+            <option value="5">المستوى الخامس: الماراثون والاحتراف</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">المدة (بالدقائق):</label>
+            <input type="number" id="newExamDuration" value="60" min="10" max="180" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">نسبة الاجتياز (%):</label>
+            <input type="number" id="newExamPassPercent" value="65" min="40" max="100" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+          </div>
+        </div>
+
+        <button onclick="AdminApp.saveNewExam()" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-plus"></i>
+          <span>إنشاء الاختبار</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: ADD NEW SKILL TEST ================= -->
+  <div id="modalAddSkillTest" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white">إضافة تدريب جديد للمهارة</h3>
+          <p id="addSkillTestSubTitle" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">إنشاء اختبار تدريبي جديد</p>
+        </div>
+        <button onclick="document.getElementById('modalAddSkillTest').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 dark:hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">عنوان التدريب: <span class="text-rose-500">*</span></label>
+          <input type="text" id="newSkillTestTitle" placeholder="مثال: الاختبار التدريبي (7)" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">وصف التدريب:</label>
+          <input type="text" id="newSkillTestDesc" placeholder="مثال: تدريبات متقدمة ومكثفة" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">نسبة الاجتياز المطلوبة (%):</label>
+          <input type="number" id="newSkillTestPassPercent" value="80" min="50" max="100" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <button onclick="AdminApp.saveNewSkillTest()" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-plus"></i>
+          <span>إنشاء التدريب</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: EDIT SKILL TEST ================= -->
+  <div id="modalEditSkillTest" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-2xl relative animate-scaleUp">
+      <input type="hidden" id="editSkillTestId">
+      <input type="hidden" id="editSkillTestSkillId">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white">تعديل بيانات التدريب</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">تعديل المسمى والوصف ونسبة الاجتياز</p>
+        </div>
+        <button onclick="document.getElementById('modalEditSkillTest').classList.add('hidden')" class="text-slate-400 hover:text-slate-700 dark:hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">عنوان التدريب: <span class="text-rose-500">*</span></label>
+          <input type="text" id="editSkillTestTitle" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">وصف التدريب:</label>
+          <input type="text" id="editSkillTestDesc" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">نسبة الاجتياز (%):</label>
+          <input type="number" id="editSkillTestPassPercent" value="80" class="w-full p-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <button onclick="AdminApp.saveEditSkillTest()" class="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-check"></i>
+          <span>حفظ التعديلات</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: GENERAL DELETE CONFIRMATION ================= -->
+  <div id="modalConfirmDeleteGeneral" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-6 sm:p-8 border border-rose-200 dark:border-rose-900/60 shadow-2xl relative text-center animate-scaleUp">
+      <div class="w-14 h-14 rounded-2xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 mx-auto mb-4 flex items-center justify-center text-2xl font-bold">
+        <i class="fa-solid fa-trash-can"></i>
+      </div>
+      
+      <h3 id="deleteGeneralTitle" class="text-lg font-black text-slate-900 dark:text-white mb-2">تأكيد عملية الحذف</h3>
+      <p id="deleteGeneralMessage" class="text-xs font-bold text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+        هل أنت متأكد من رغبتك في حذف هذا العنصر؟ لا يمكن التراجع عن هذه العملية.
+      </p>
+
+      <div class="space-y-2">
+        <button id="btnConfirmDeleteGeneral" class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-extrabold text-xs transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-trash"></i>
+          <span>نعم، حذف نهائياً</span>
+        </button>
+        <button onclick="document.getElementById('modalConfirmDeleteGeneral').classList.add('hidden')" class="w-full py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-bold text-xs hover:bg-slate-200 transition">
+          إلغاء
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="./assets/data/bundle.js?v=20261102_4"></script>
+  <script src="./assets/js/api.js?v=20261102_4"></script>
+  <script src="./assets/js/student.js?v=20261102_4"></script>
+  <script src="./assets/js/admin.js?v=20261102_4"></script>
+  <script src="./assets/js/app.js?v=20261102_4"></script>
+</body>
+</html>

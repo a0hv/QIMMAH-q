@@ -1,0 +1,745 @@
+/* ==========================================================================
+   منصة القمة في القدرات اللفظية | الأستاذ جابر القاضي
+   PERPLEXITY NOCTURNAL PARCHMENT & DEEP FOREST DESIGN SYSTEM
+   Official Style Reference Implementation — DESIGN (1).md
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. THMANYAH (ثمانية) TYPOGRAPHY SUITE - OFFICIAL INTEGRATION
+   -------------------------------------------------------------------------- */
+
+/* 1a. Thmanyah Serif Display (Hero declarations, headlines, teacher quotes, scores) */
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Light.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Regular.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Medium.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Bold.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Display';
+  src: url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Black.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-display/thmanyah-serif-display-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 1b. Thmanyah Serif Text (Reading Comprehension Passages & Literary Explanations) */
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Light.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Regular.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Medium.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Bold.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Serif Text';
+  src: url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Black.woff2') format('woff2'),
+       url('../fonts/thmanyah-serif-text/thmanyah-serif-text-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 1c. Thmanyah Sans (Primary Interface Workhorse: Nav, Buttons, Cards, Inputs, Choices, Admin) */
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('../fonts/thmanyah-sans/thmanyah-sans-Light.woff2') format('woff2'),
+       url('../fonts/thmanyah-sans/thmanyah-sans-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('../fonts/thmanyah-sans/thmanyah-sans-Regular.woff2') format('woff2'),
+       url('../fonts/thmanyah-sans/thmanyah-sans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('../fonts/thmanyah-sans/thmanyah-sans-Medium.woff2') format('woff2'),
+       url('../fonts/thmanyah-sans/thmanyah-sans-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('../fonts/thmanyah-sans/thmanyah-sans-Bold.woff2') format('woff2'),
+       url('../fonts/thmanyah-sans/thmanyah-sans-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('../fonts/thmanyah-sans/thmanyah-sans-Black.woff2') format('woff2'),
+       url('../fonts/thmanyah-sans/thmanyah-sans-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. PERPLEXITY DESIGN TOKENS (DUAL-MODE: NOCTURNAL DARK + AGED PARCHMENT LIGHT)
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Font Family Mappings */
+  --font-pplxserif: 'Thmanyah Serif Display', Georgia, serif;
+  --font-serif-body: 'Thmanyah Serif Text', Georgia, serif;
+  --font-pplxsans: 'Thmanyah Sans', -apple-system, sans-serif;
+  --font-pplxsansmono: 'JetBrains Mono', 'Thmanyah Sans', monospace;
+
+  /* Shapes & Rhythm (DESIGN (1).md) */
+  --radius-cards: 12px;
+  --radius-buttons: 40px;
+  --radius-inputs: 4px;
+  --radius-badges: 4px;
+
+  /* DEFAULT NOCTURNAL THEME (Dark Heritage Luxury) */
+  --surface-canvas: #121516;
+  --surface-canvas-gradient: radial-gradient(circle at 50% 0%, #1d2319 0%, #121516 65%, #0d0f10 100%);
+  --surface-card: #181d15;
+  --surface-card-hover: #1f261c;
+  --surface-card-highlight: #0f3639;
+  --surface-recessed: #0a0d0d;
+  --surface-nav: rgba(18, 21, 22, 0.85);
+  --border-hairline: rgba(209, 207, 199, 0.12);
+  --border-hairline-strong: rgba(209, 207, 199, 0.22);
+
+  --text-primary: #faf8f5;     /* Warm Parchment */
+  --text-secondary: #d1cfc7;   /* Fog */
+  --text-muted: #9e9686;       /* Moss Shadow lightened */
+
+  --color-aged-sepia: #271a00;
+  --color-parchment: #faf8f5;
+  --color-fog: #d1cfc7;
+  --color-deep-forest: #23291b;
+  --color-teal-accent: #0f3639;
+  --color-teal-bright: #2dd4bf;
+  --color-moss-shadow: #7c7464;
+
+  /* Primary Button Tokens (Nocturnal) */
+  --btn-primary-bg: #faf8f5;
+  --btn-primary-text: #271a00;
+  --btn-primary-border: #d1cfc7;
+  --btn-primary-hover-bg: #d1cfc7;
+
+  /* Option Buttons Tokens */
+  --option-bg: #151a13;
+  --option-border: rgba(209, 207, 199, 0.14);
+  --option-text: #faf8f5;
+  --option-hover-bg: #1e241b;
+  --option-hover-border: #d1cfc7;
+  --option-selected-bg: #0f3639;
+  --option-selected-border: #2dd4bf;
+  --option-selected-text: #ffffff;
+  --option-correct-bg: rgba(16, 185, 129, 0.22);
+  --option-correct-border: #10b981;
+  --option-wrong-bg: rgba(239, 68, 68, 0.22);
+  --option-wrong-border: #ef4444;
+
+  /* Reading Passages */
+  --passage-bg: #080a0a;
+  --passage-border: rgba(209, 207, 199, 0.14);
+  --passage-text: #faf8f5;
+}
+
+/* LIGHT MODE: Crisp High-Contrast & Parchment Elegance (Optional Toggle) */
+html:not(.dark) {
+  --surface-canvas: #f8fafc;
+  --surface-canvas-gradient: #f8fafc;
+  --surface-card: #ffffff;
+  --surface-card-hover: #f8fafc;
+  --surface-card-highlight: #ecfdf5;
+  --surface-recessed: #f1f5f9;
+  --surface-nav: rgba(255, 255, 255, 0.95);
+  --border-hairline: #e2e8f0;
+  --border-hairline-strong: #cbd5e1;
+
+  --text-primary: #0f172a;     /* Deep Crisp Slate */
+  --text-secondary: #475569;   /* Slate 600 */
+  --text-muted: #94a3b8;
+
+  /* Primary Button Tokens (Light) */
+  --btn-primary-bg: #059669;
+  --btn-primary-text: #ffffff;
+  --btn-primary-border: #059669;
+  --btn-primary-hover-bg: #047857;
+
+  /* Option Buttons Tokens */
+  --option-bg: #ffffff;
+  --option-border: #e2e8f0;
+  --option-text: #0f172a;
+  --option-hover-bg: #f8fafc;
+  --option-hover-border: #cbd5e1;
+  --option-selected-bg: #ecfdf5;
+  --option-selected-border: #059669;
+  --option-selected-text: #065f46;
+
+  /* Reading Passages */
+  --passage-bg: #ffffff;
+  --passage-border: #e2e8f0;
+  --passage-text: #0f172a;
+}
+
+/* --------------------------------------------------------------------------
+   3. GLOBAL BASE STYLES
+   -------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-pplxsans);
+  direction: rtl;
+  text-align: right;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark body {
+  background-color: #121516;
+  background-image: radial-gradient(circle at 50% 0%, #1d2319 0%, #121516 65%, #0d0f10 100%);
+  background-attachment: fixed;
+  color: #faf8f5;
+}
+
+html:not(.dark) body {
+  background-color: #f8fafc;
+  background-image: none;
+  color: #0f172a;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, .font-serif, .hero-headline, .section-title, .score-announcement {
+  font-family: var(--font-pplxserif);
+  letter-spacing: -0.015em;
+}
+
+.font-passage, #practicePassageBox, #examPassageBox, .passage-content, .reading-text {
+  font-family: var(--font-serif-body) !important;
+  line-height: 1.85 !important;
+}
+
+.font-mono, .code-badge, .timer-display, .counter-display, .student-code {
+  font-family: var(--font-pplxsansmono) !important;
+}
+
+/* Custom Nocturnal Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(209, 207, 199, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(209, 207, 199, 0.4);
+}
+
+/* Glassmorphism Navigation & Cards */
+.glass-panel {
+  background: var(--surface-nav);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: var(--border-hairline);
+}
+
+/* --------------------------------------------------------------------------
+   4. PERPLEXITY BUTTONS & PILLS (40px Radius)
+   -------------------------------------------------------------------------- */
+
+/* Signature 40px Full-Pill CTA Button */
+.btn-pill-primary {
+  border-radius: var(--radius-buttons);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text) !important;
+  border: 1px solid var(--btn-primary-border);
+  padding: 0.75rem 1.75rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: none !important;
+}
+.btn-pill-primary:hover {
+  background-color: var(--btn-primary-hover-bg);
+  transform: translateY(-1px);
+}
+.btn-pill-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Ghost Pill Button */
+.btn-pill-ghost {
+  border-radius: var(--radius-buttons);
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-hairline);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-pill-ghost:hover {
+  background-color: var(--surface-card);
+  border-color: var(--border-hairline-strong);
+}
+
+/* --------------------------------------------------------------------------
+   5. PERPLEXITY CARD SYSTEM (12px Radius, Zero Drop Shadows)
+   -------------------------------------------------------------------------- */
+
+.pplx-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-cards);
+  padding: 2rem 2.25rem;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.pplx-card:hover {
+  border-color: var(--border-hairline-strong);
+}
+
+.pplx-well {
+  background-color: var(--surface-recessed);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-cards);
+  box-shadow: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. QUESTION RUNNER & PALETTE INSTRUMENT (4px Radius)
+   -------------------------------------------------------------------------- */
+
+/* Option Buttons */
+.option-btn {
+  background-color: var(--option-bg);
+  border: 1px solid var(--option-border);
+  color: var(--option-text);
+  border-radius: 8px;
+  padding: 0.9rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  cursor: pointer;
+}
+.option-btn:hover:not(:disabled) {
+  background-color: var(--option-hover-bg);
+  border-color: var(--option-hover-border);
+  transform: translateY(-1px);
+}
+.option-btn.selected {
+  background-color: var(--option-selected-bg) !important;
+  border-color: var(--option-selected-border) !important;
+  color: var(--option-selected-text) !important;
+  outline: 1px solid var(--option-selected-border);
+}
+.option-btn.correct-choice {
+  background-color: var(--option-correct-bg) !important;
+  border-color: var(--option-correct-border) !important;
+  color: #34d399 !important;
+}
+.option-btn.wrong-choice {
+  background-color: var(--option-wrong-bg) !important;
+  border-color: var(--option-wrong-border) !important;
+  color: #f87171 !important;
+}
+
+/* Option Letter Badge (أ، ب، ج، د) */
+.option-letter {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 4px;
+  background-color: rgba(209, 207, 199, 0.1);
+  border: 1px solid rgba(209, 207, 199, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  margin-left: 0.75rem;
+}
+
+/* Cross-Out / Option Elimination */
+.option-btn.crossed-out {
+  opacity: 0.35;
+  text-decoration: line-through;
+  background-color: transparent !important;
+  border-color: rgba(209, 207, 199, 0.08) !important;
+}
+
+/* Palette Squares (4px radius engineered look) */
+.palette-btn {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-inputs);
+  font-family: var(--font-pplxsansmono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--surface-card);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.palette-btn:hover {
+  border-color: var(--border-hairline-strong);
+  color: var(--text-primary);
+}
+.palette-btn.current {
+  border-color: var(--text-primary) !important;
+  background-color: var(--surface-card-highlight) !important;
+  color: #ffffff !important;
+  outline: 2px solid var(--color-teal-bright);
+}
+.palette-btn.answered {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  border-color: #10b981 !important;
+  color: #6ee7b7 !important;
+}
+.palette-btn.flagged {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  border-color: #f59e0b !important;
+  color: #fcd34d !important;
+}
+
+/* Reading Comprehension Box */
+#practicePassageBox, #examPassageBox {
+  background-color: var(--passage-bg);
+  border: 1px solid var(--passage-border);
+  border-radius: var(--radius-cards);
+  color: var(--passage-text);
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-serif-body);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+/* Font Sizing Scale Controls */
+.font-scale-sm { font-size: 0.92rem !important; }
+.font-scale-md { font-size: 1.05rem !important; }
+.font-scale-lg { font-size: 1.2rem !important; }
+.font-scale-xl { font-size: 1.35rem !important; }
+
+/* --------------------------------------------------------------------------
+   7. NAVIGATION PILLS & LINKS
+   -------------------------------------------------------------------------- */
+
+.nav-pill {
+  border-radius: var(--radius-buttons);
+  padding: 0.5rem 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.nav-pill:hover {
+  color: var(--text-primary);
+  background-color: var(--surface-card);
+  border-color: var(--border-hairline);
+}
+.nav-pill.active {
+  background-color: var(--surface-card-highlight);
+  color: #ffffff;
+  border-color: var(--color-teal-bright);
+}
+
+/* Floating WhatsApp Quick Action Button */
+.float-wa-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 45;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.float-wa-btn:hover {
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 14px 30px -5px rgba(16, 185, 129, 0.6);
+}
+
+/* Student Navigation: Matches Main Navbar Dynamic Indicator Line (Zero Halo / Zero Border Boxes) */
+#studentNavbar .nav-pill {
+  border: 1px solid transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+#studentNavbar .nav-pill:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+#studentNavbar .nav-pill.nav-link-active {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  border-color: transparent !important;
+  background: transparent !important;
+}
+
+html:not(.dark) #studentNavbar .nav-pill.nav-link-active {
+  color: #065f46 !important;
+}
+
+#studentNavbar .nav-pill.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 15%;
+  left: 15%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #10b981, #2dd4bf);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.9);
+}
+
+.admin-nav-btn.active {
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+/* Inputs & Form Controls (4px Radius) */
+input, select, textarea {
+  border-radius: var(--radius-inputs) !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-scaleUp {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   8. CINEMATIC STUDIO SPOTLIGHT HERO & LUXURY TRANSITIONS
+   -------------------------------------------------------------------------- */
+
+.hero-studio-dark {
+  background-color: #0b0d12 !important;
+  background-image: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(15, 54, 57, 0.25), transparent 75%) !important;
+  color: #faf8f5 !important;
+  position: relative;
+}
+
+.studio-backlight-glow {
+  display: none !important;
+}
+
+.studio-portrait-mask {
+  -webkit-mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.75) 78%, transparent 100%),
+                      linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 60%, rgba(0, 0, 0, 0.75) 78%, transparent 100%);
+}
+
+.nav-link-active {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  position: relative;
+}
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 18%;
+  left: 18%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #10b981, #2dd4bf);
+  border-radius: 9999px;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.9);
+}
+
+.card-corner-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.06);
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.dark .card-corner-arrow {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d1cfc7;
+}
+.card-corner-arrow:hover, .group:hover .card-corner-arrow {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  transform: scale(1.08);
+}
+
+/* --------------------------------------------------------------------------
+   9. SACRED GEOMETRIC ASTROLABE ANIMATION (THEME-DERIVED HERO AURA)
+   -------------------------------------------------------------------------- */
+
+@keyframes geoSpinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes geoSpinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes geoPulseSlow {
+  0%, 100% { opacity: 0.45; transform: scale(0.98); }
+  50% { opacity: 0.8; transform: scale(1.02); }
+}
+
+.geo-anim-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .geo-anim-container {
+    width: 540px;
+    height: 540px;
+    top: 44%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .geo-anim-container {
+    width: 580px;
+    height: 580px;
+    top: 43%;
+  }
+}
+
+.geo-layer-outer {
+  position: absolute;
+  inset: 0;
+  animation: geoSpinSlow 55s linear infinite;
+  transform-origin: center center;
+}
+
+.geo-layer-middle {
+  position: absolute;
+  inset: 0;
+  animation: geoSpinReverse 42s linear infinite;
+  transform-origin: center center;
+}
+
+.geo-layer-inner {
+  position: absolute;
+  inset: 0;
+  animation: geoSpinSlow 28s linear infinite;
+  transform-origin: center center;
+}
+
+.geo-layer-pulse {
+  position: absolute;
+  inset: 0;
+  animation: geoPulseSlow 7s ease-in-out infinite;
+}
